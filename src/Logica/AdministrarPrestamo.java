@@ -6,6 +6,8 @@
 package Logica;
 
 import AccesoDatos.Realizacion;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
@@ -28,6 +30,19 @@ public class AdministrarPrestamo {
         return estado;
     }
     
+    public boolean actualizarEstadoEjemplar(int id) {
+        Realizacion real = new Realizacion();
+        return real.actualizarDisponibilidadEjemplar(id);
+    }
+    
+    public List<Prestamo> mostrarPrestamo() {
+        List<Prestamo> listaPrestamo = new ArrayList<Prestamo>();
+        Realizacion rel = new Realizacion();
+        listaPrestamo = rel.mostrarPrestamos();
+        return listaPrestamo;
+    }
+
+    
     //obtener tipo de prestamo seleccionado de comboBox   
     public String tipoPrestamo(JComboBox<String> tipoPrestamo) {
         int selected;
@@ -45,5 +60,11 @@ public class AdministrarPrestamo {
         }
         return tipo;
     }
+    
+    //PARA FORMULARIO
+    
+    //Obtener libro a partir de ejemplar
+    
+    
     
 }

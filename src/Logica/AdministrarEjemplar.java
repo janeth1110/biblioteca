@@ -34,4 +34,12 @@ public class AdministrarEjemplar {
         return listaEjemplar;
     }
     
+    //retornar id de libro a partir de id ejemplar  
+    public int devolverIdLibro (int x){
+        int i=0;
+        QueryEjemplar que = new QueryEjemplar();
+        i=que.obtenerIdLibroAPartirDeEjemplar(x);
+        return i;
+    }
+    
 }

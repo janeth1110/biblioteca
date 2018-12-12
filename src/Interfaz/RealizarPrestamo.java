@@ -6,7 +6,6 @@
 package Interfaz;
 
 import Logica.*;
-import com.toedter.calendar.JDateChooser;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JTable;
@@ -373,29 +372,18 @@ public class RealizarPrestamo extends javax.swing.JFrame {
         jDCPrestamo.setDate(fecha);
     }
 
-//    public Date convertirFechaprestamo(JDateChooser fech) {
-//        java.sql.Date sqlDate;
-//        try {
-//            java.util.Date date = jDCPrestamo.getDate();
-//            sqlDate = new java.sql.Date(date.getTime());
-//            return sqlDate;
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, "Al menos elija una FECHA DE NACIMIENTO VALIDA ", "Error..!!", JOptionPane.ERROR_MESSAGE);
-//            return null;
-//        }
-//    }
-//
-//    public Date convertirFechaDevolucion(JDateChooser fech) {
-//        java.sql.Date sqlDate;
-//        try {
-//            java.util.Date date = fech.getDate();
-//            sqlDate = new java.sql.Date(date.getTime());
-//            return sqlDate;
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, "Al menos elija una FECHA DE NACIMIENTO VALIDA ", "Error..!!", JOptionPane.ERROR_MESSAGE);
-//            return null;
-//        }
-//    }
+    //limpia campos después de almacenar datos
+    public void limpiar() {
+        jTFLector.setText("");
+        jTFLibroSeleccionado.setText("");
+        jTFEjemplar.setText("");
+        jTFUbicacion.setText("");
+        jDCFechaDevolucion.setDate(fecha);
+        jCBTipoPrestamo.setSelectedIndex(0);
+//        jTLectores.setModel(null);
+//        jTLibros.setModel(null);
+//        jTEjemplares.setModel(null);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -424,13 +412,14 @@ public class RealizarPrestamo extends javax.swing.JFrame {
         jDCFechaDevolucion = new com.toedter.calendar.JDateChooser();
         jCBTipoPrestamo = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
+        jBLimpiarDato = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTLectores = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jTFBuscarNombre = new javax.swing.JTextField();
-        jBLimpiar = new javax.swing.JButton();
+        jBLimpiarBusquedaNombre = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jTFBuscarLibro = new javax.swing.JTextField();
@@ -490,6 +479,13 @@ public class RealizarPrestamo extends javax.swing.JFrame {
 
         jLabel10.setText("Tipo de prestamo: ");
 
+        jBLimpiarDato.setText("Limpiar");
+        jBLimpiarDato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBLimpiarDatoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -497,7 +493,9 @@ public class RealizarPrestamo extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(170, 170, 170)
+                        .addGap(79, 79, 79)
+                        .addComponent(jBLimpiarDato)
+                        .addGap(18, 18, 18)
                         .addComponent(jBGuardar))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(57, 57, 57)
@@ -565,7 +563,9 @@ public class RealizarPrestamo extends javax.swing.JFrame {
                     .addComponent(jCBTipoPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
                 .addGap(45, 45, 45)
-                .addComponent(jBGuardar)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBGuardar)
+                    .addComponent(jBLimpiarDato))
                 .addContainerGap(99, Short.MAX_VALUE))
         );
 
@@ -600,10 +600,10 @@ public class RealizarPrestamo extends javax.swing.JFrame {
             }
         });
 
-        jBLimpiar.setText("Limpiar");
-        jBLimpiar.addActionListener(new java.awt.event.ActionListener() {
+        jBLimpiarBusquedaNombre.setText("Limpiar");
+        jBLimpiarBusquedaNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBLimpiarActionPerformed(evt);
+                jBLimpiarBusquedaNombreActionPerformed(evt);
             }
         });
 
@@ -621,7 +621,7 @@ public class RealizarPrestamo extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jTFBuscarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jBLimpiar)
+                .addComponent(jBLimpiarBusquedaNombre)
                 .addContainerGap(28, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -631,7 +631,7 @@ public class RealizarPrestamo extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTFBuscarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBLimpiar))
+                    .addComponent(jBLimpiarBusquedaNombre))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
                 .addContainerGap())
@@ -792,11 +792,11 @@ public class RealizarPrestamo extends javax.swing.JFrame {
         tamanosLibro(jTLibros);
     }//GEN-LAST:event_jBLimpiarLibrosActionPerformed
 
-    private void jBLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimpiarActionPerformed
+    private void jBLimpiarBusquedaNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimpiarBusquedaNombreActionPerformed
         // TODO add your handling code here:
         jTLectores.setModel(mostrarLector());
         tamañosLector(jTLectores);
-    }//GEN-LAST:event_jBLimpiarActionPerformed
+    }//GEN-LAST:event_jBLimpiarBusquedaNombreActionPerformed
 
     private void jTFBuscarNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFBuscarNombreKeyTyped
         // TODO add your handling code here:
@@ -847,14 +847,22 @@ public class RealizarPrestamo extends javax.swing.JFrame {
 
         prestamo.setFechaDevolucion(sqlDate);
         prestamo.setFechaPrestamo(sqlDate2);
-        
-        if (ape.agregarPrestamo(prestamo)== true) {
+
+        if (ape.agregarPrestamo(prestamo) == true) {
 //            JOptionPane.showMessageDialog(null, "Lector agregado exitosamente");
-//                limpiar();
-            } else {
+            ape.actualizarEstadoEjemplar(prestamo.getIdEjemplar());
+            Main me = new Main();
+            me.setVisible(true);
+            this.dispose();
+        } else {
 //                JOptionPane.showMessageDialog(null, "Ha sucedido un error, por favor revise los datos ingresados");
-            }
+        }
     }//GEN-LAST:event_jBGuardarActionPerformed
+
+    private void jBLimpiarDatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimpiarDatoActionPerformed
+        // TODO add your handling code here:
+        limpiar();
+    }//GEN-LAST:event_jBLimpiarDatoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -895,7 +903,8 @@ public class RealizarPrestamo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAtras;
     private javax.swing.JButton jBGuardar;
-    private javax.swing.JButton jBLimpiar;
+    private javax.swing.JButton jBLimpiarBusquedaNombre;
+    private javax.swing.JButton jBLimpiarDato;
     private javax.swing.JButton jBLimpiarLibros;
     private javax.swing.JComboBox<String> jCBTipoPrestamo;
     private com.toedter.calendar.JDateChooser jDCFechaDevolucion;

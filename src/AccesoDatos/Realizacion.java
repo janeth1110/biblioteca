@@ -4,8 +4,11 @@
  */
 package AccesoDatos;
 
+import Logica.Prestamo;
 import java.sql.*;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -63,5 +66,58 @@ public class Realizacion {
         }
         return estado;
     }
+    
+    public boolean actualizarDisponibilidadEjemplar(int idEjmplar) {
+        try {
+            int rows_updated = 0;
+            PreparedStatement stmt1 = con.conectar().prepareStatement("UPDATE biblioteca.ejemplar SET Estado_idEstado = ? WHERE idejemplar=" + idEjmplar);
+            stmt1.setInt(1, 2);
+
+            rows_updated = stmt1.executeUpdate();
+            if (rows_updated == 1) {
+                JOptionPane.showMessageDialog(null, "Actualizacion realizada!");
+                con.desconectar();
+                return true;
+            } else {
+                con.desconectar();
+                return false;
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Errorts: " + e.getMessage());
+            return false;
+        }
+    }
+    
+    public List<Prestamo> mostrarPrestamos() {
+        List<Prestamo> listaPrestamo = new ArrayList<Prestamo>();
+        try {
+            Statement sentencia = null;
+            ResultSet resultado = null;
+            sentencia = con.conectar().createStatement();
+            resultado = sentencia.executeQuery("SELECT * FROM biblioteca.prestamo WHERE devolucion = 'pendiente'");
+            resultado.last();
+            if (resultado.getRow() <= 0) {
+                listaPrestamo.clear();
+                return listaPrestamo;
+            } else {
+                resultado.beforeFirst();
+                while (resultado.next()) {
+                    int idEjemplar = (Integer) resultado.getObject("idejemplar");
+                    int idLector = (Integer) resultado.getObject("id_lector");
+                    Date prestamo = resultado.getDate("fecha_prestamo");
+                    Date devolucion = resultado.getDate("fecha_devolucion");
+                    String estado = resultado.getObject("devolucion").toString();
+                    String tipo = resultado.getObject("tipo_prestamo").toString();
+                    Prestamo li = new Prestamo(idEjemplar, idLector, prestamo, devolucion, estado, tipo);
+                    listaPrestamo.add(li);
+                }
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        con.desconectar();
+        return listaPrestamo;
+    }
+    
 
 }
