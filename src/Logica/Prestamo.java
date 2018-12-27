@@ -13,6 +13,7 @@ import java.sql.Date;
  */
 public class Prestamo {
     
+    private int idPrestamo;
     private int idEjemplar;
     private int idLector;
     private Date fechaPrestamo;
@@ -24,7 +25,8 @@ public class Prestamo {
         
     }
     
-    public Prestamo(int idEjemplar, int idLector, Date fechaPrestamo, Date fechaDevolucion, String devolucion, String tipoPrestamo){       
+    public Prestamo(int idPrestamo, int idEjemplar, int idLector, Date fechaPrestamo, Date fechaDevolucion, String devolucion, String tipoPrestamo){       
+        this.idPrestamo=idPrestamo;
         this.idEjemplar = idEjemplar;
         this.idLector = idLector;
         this.fechaPrestamo = fechaPrestamo;
@@ -115,6 +117,20 @@ public class Prestamo {
      */
     public void setTipoPrestamo(String tipoPrestamo) {
         this.tipoPrestamo = tipoPrestamo;
+    }
+
+    /**
+     * @return the idPrestamo
+     */
+    public int getIdPrestamo() {
+        return idPrestamo;
+    }
+
+    /**
+     * @param idPrestamo the idPrestamo to set
+     */
+    public void setIdPrestamo(int idPrestamo) {
+        this.idPrestamo = idPrestamo;
     }
     
     

@@ -180,4 +180,31 @@ public class QueryLector {
         con.desconectar();
         return listaLector;
     }
+    
+    public Lector obtenerIdLector(String nombre) {
+        try {
+            Statement sentencia = null;
+            ResultSet resultado = null;
+
+            sentencia = con.conectar().createStatement();
+            resultado = sentencia.executeQuery("SELECT * FROM lector WHERE nombre LIKE '" + nombre +"%'");
+
+            resultado.beforeFirst();
+            resultado.last();
+
+            lector.setNombre(resultado.getString("nombre"));
+            lector.setApellido(resultado.getString("apellido"));
+            lector.setSexo(resultado.getString("sexo"));
+            lector.setFecha_nac(resultado.getDate("fecha_nacimiento"));
+            lector.setCondicion(resultado.getString("condicion"));
+            lector.setTelefono(resultado.getString("telefono"));
+            lector.setId(resultado.getInt("idlector"));
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+//JOptionPane.showMessageDialog(null, lector.getId());
+        return lector;
+    }
+    
 }

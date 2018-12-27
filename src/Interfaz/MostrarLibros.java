@@ -35,8 +35,6 @@ public class MostrarLibros extends javax.swing.JFrame {
         tamanos(jTLibros);
     }
     
-    
-
     public DefaultTableModel mostrarLibros() {
         List<Libro> libros2 = new ArrayList<Libro>();
         DefaultTableModel res = new DefaultTableModel();

@@ -191,7 +191,6 @@ con.desconectar();
         return listaLibro;
     }
     
-
     public int obtenerEjemplares(int id) {
         int numero = 0;
         try {
@@ -210,5 +209,4 @@ con.desconectar();
         }
         return numero;
     }
-
 }

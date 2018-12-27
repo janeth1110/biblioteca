@@ -41,6 +41,14 @@ public class AdministrarPrestamo {
         listaPrestamo = rel.mostrarPrestamos();
         return listaPrestamo;
     }
+    
+    //Buscar prestamos
+    public List <Prestamo> buscarPrestamo(int n){
+        List<Prestamo> listaPrestamos = new ArrayList<Prestamo>();
+        Realizacion rel = new Realizacion();
+        listaPrestamos = rel.buscarPrestamo(n);
+        return listaPrestamos;
+    }
 
     
     //obtener tipo de prestamo seleccionado de comboBox   

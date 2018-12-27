@@ -30,7 +30,7 @@ public class Realizacion {
             stmt1.setDate(4, fechaDevolucion);
             stmt1.setString(5, devolucion);
             stmt1.setString(6, tipo);
-            rows_updated=stmt1.executeUpdate();
+            rows_updated = stmt1.executeUpdate();
 //            JOptionPane.showMessageDialog(null, rows_updated);
             con.desconectar();
 
@@ -47,7 +47,7 @@ public class Realizacion {
             return false;
         }
     }
-    
+
     public String obtenerEstadoDisponibilidad(int id) {
         String estado = "";
         try {
@@ -55,9 +55,9 @@ public class Realizacion {
             ResultSet resultado = null;
 
             sentencia = con.conectar().createStatement();
-            resultado = sentencia.executeQuery("SELECT * FROM biblioteca.estado WHERE idEstado = "+id);
+            resultado = sentencia.executeQuery("SELECT * FROM biblioteca.estado WHERE idEstado = " + id);
             resultado.last();
-            
+
             estado = resultado.getString("Estado");
             con.desconectar();
         } catch (SQLException e) {
@@ -66,7 +66,7 @@ public class Realizacion {
         }
         return estado;
     }
-    
+
     public boolean actualizarDisponibilidadEjemplar(int idEjmplar) {
         try {
             int rows_updated = 0;
@@ -87,7 +87,7 @@ public class Realizacion {
             return false;
         }
     }
-    
+
     public List<Prestamo> mostrarPrestamos() {
         List<Prestamo> listaPrestamo = new ArrayList<Prestamo>();
         try {
@@ -102,13 +102,14 @@ public class Realizacion {
             } else {
                 resultado.beforeFirst();
                 while (resultado.next()) {
+                    int idPrestamo = (Integer) resultado.getObject("idprestamo");
                     int idEjemplar = (Integer) resultado.getObject("idejemplar");
                     int idLector = (Integer) resultado.getObject("id_lector");
                     Date prestamo = resultado.getDate("fecha_prestamo");
                     Date devolucion = resultado.getDate("fecha_devolucion");
                     String estado = resultado.getObject("devolucion").toString();
                     String tipo = resultado.getObject("tipo_prestamo").toString();
-                    Prestamo li = new Prestamo(idEjemplar, idLector, prestamo, devolucion, estado, tipo);
+                    Prestamo li = new Prestamo(idPrestamo, idEjemplar, idLector, prestamo, devolucion, estado, tipo);
                     listaPrestamo.add(li);
                 }
             }
@@ -118,6 +119,37 @@ public class Realizacion {
         con.desconectar();
         return listaPrestamo;
     }
-    
+
+    public List<Prestamo> buscarPrestamo(int n) {
+        List<Prestamo> listaPrestamo = new ArrayList<Prestamo>();
+        try {
+            Statement sentencia = null;
+            ResultSet resultado = null;
+            sentencia = con.conectar().createStatement();
+            resultado = sentencia.executeQuery("SELECT * FROM biblioteca.prestamo WHERE devolucion='pendiente' and id_lector='" + n + "'");
+            resultado.last();
+            if (resultado.getRow() <= 0) {
+                listaPrestamo.clear();
+                return listaPrestamo;
+            } else {
+                resultado.beforeFirst();
+                while (resultado.next()) {
+                    int idPrestamo = (Integer) resultado.getObject("idprestamo");
+                    int idEjemplar = (Integer) resultado.getObject("idejemplar");
+                    int idLector = (Integer) resultado.getObject("id_lector");
+                    Date prestamo = resultado.getDate("fecha_prestamo");
+                    Date devolucion = resultado.getDate("fecha_devolucion");
+                    String estado = resultado.getObject("devolucion").toString();
+                    String tipo = resultado.getObject("tipo_prestamo").toString();
+                    Prestamo li = new Prestamo(idPrestamo, idEjemplar, idLector, prestamo, devolucion, estado, tipo);
+                    listaPrestamo.add(li);
+                }
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        con.desconectar();
+        return listaPrestamo;
+    }
 
 }

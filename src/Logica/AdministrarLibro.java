@@ -57,5 +57,4 @@ public class AdministrarLibro {
         cantidad = me.obtenerEjemplares(id);
         return cantidad;
     }
-    
 }

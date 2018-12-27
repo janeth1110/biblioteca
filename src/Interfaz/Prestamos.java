@@ -5,19 +5,14 @@
  */
 package Interfaz;
 
-import AccesoDatos.Realizacion;
-import Logica.AdministrarEjemplar;
-import Logica.AdministrarLector;
-import Logica.AdministrarLibro;
-import Logica.AdministrarPrestamo;
-import Logica.Lector;
-import Logica.Libro;
-import Logica.Prestamo;
+import Logica.*;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -44,6 +39,7 @@ public class Prestamos extends javax.swing.JFrame {
     public DefaultTableModel mostrarPrestamos() {
         List<Prestamo> prestamo2 = new ArrayList<Prestamo>();
         DefaultTableModel res = new DefaultTableModel();
+        res.addColumn("Codigo");
         res.addColumn("Libro");
         res.addColumn("Lector");
         res.addColumn("Fecha Prestamo");
@@ -57,12 +53,42 @@ public class Prestamos extends javax.swing.JFrame {
         int i = 0;
         for (Prestamo l : prestamo2) {
             res.addRow(new Object[]{});
-            res.setValueAt(ObtenerLibro(l.getIdEjemplar()), i, 0);
-            res.setValueAt(ObtenerNombreLector(l.getIdLector()), i, 1);
-            res.setValueAt(l.getFechaPrestamo(), i, 2);
-            res.setValueAt(l.getFechaDevolucion(), i, 3);
-            res.setValueAt(l.getDevolucion(), i, 4);
-            res.setValueAt(l.getTipoPrestamo(), i, 5);
+            res.setValueAt(l.getIdPrestamo(), i, 0);
+            res.setValueAt(ObtenerLibro(l.getIdEjemplar()), i, 1);
+            res.setValueAt(ObtenerNombreLector(l.getIdLector()), i, 2);
+            res.setValueAt(l.getFechaPrestamo(), i, 3);
+            res.setValueAt(l.getFechaDevolucion(), i, 4);
+            res.setValueAt(l.getDevolucion(), i, 5);
+            res.setValueAt(l.getTipoPrestamo(), i, 6);
+            i++;
+        }
+        return res;
+    }
+
+    public DefaultTableModel buscarPrestamos(int n) {
+        List<Prestamo> prestamo2 = new ArrayList<Prestamo>();
+        DefaultTableModel res = new DefaultTableModel();
+        res.addColumn("Codigo");
+        res.addColumn("Libro");
+        res.addColumn("Lector");
+        res.addColumn("Fecha Prestamo");
+        res.addColumn("Devolucion");
+        res.addColumn("Estado");
+        res.addColumn("Tipo");
+
+        adpre.buscarPrestamo(n);
+        prestamo2 = adpre.buscarPrestamo(n);
+
+        int i = 0;
+        for (Prestamo l : prestamo2) {
+            res.addRow(new Object[]{});
+            res.setValueAt(l.getIdPrestamo(), i, 0);
+            res.setValueAt(ObtenerLibro(l.getIdEjemplar()), i, 1);
+            res.setValueAt(ObtenerNombreLector(l.getIdLector()), i, 2);
+            res.setValueAt(l.getFechaPrestamo(), i, 3);
+            res.setValueAt(l.getFechaDevolucion(), i, 4);
+            res.setValueAt(l.getDevolucion(), i, 5);
+            res.setValueAt(l.getTipoPrestamo(), i, 6);
             i++;
         }
         return res;
@@ -86,6 +112,15 @@ public class Prestamos extends javax.swing.JFrame {
         return f;
     }
 
+    //devuelve el id del lector a partir del nombre
+    public int obtenerIdLector(String nombre) {
+        int f = 0;
+        Lector lector = new Lector();
+        lector = ale.obtenerIdLector(nombre);
+        f = lector.getId();
+        return f;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -100,13 +135,18 @@ public class Prestamos extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTPrestamos = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jTFBuscarPrestamoPorLector = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Prestamos pendientes");
 
         jLabel6.setBackground(new java.awt.Color(204, 255, 204));
         jLabel6.setFont(new java.awt.Font("Maiandra GD", 1, 20)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(153, 0, 0));
-        jLabel6.setText("Préstamo de libro");
+        jLabel6.setText("Listado de libros prestados");
         jLabel6.setToolTipText("");
 
         jBAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
@@ -129,7 +169,30 @@ public class Prestamos extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTPrestamos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTPrestamosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTPrestamos);
+
+        jLabel1.setText("Buscar por lector:");
+
+        jTFBuscarPrestamoPorLector.setToolTipText("Ingrese el nombre completo");
+        jTFBuscarPrestamoPorLector.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTFBuscarPrestamoPorLectorKeyPressed(evt);
+            }
+        });
+
+        jButton1.setText("Actualizar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Devolver");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -137,15 +200,31 @@ public class Prestamos extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 795, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTFBuscarPrestamoPorLector))
+                    .addComponent(jScrollPane1))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addGap(16, 16, 16)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jTFBuscarPrestamoPorLector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -154,13 +233,13 @@ public class Prestamos extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jBAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(375, 375, 375)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 363, Short.MAX_VALUE)
                 .addComponent(jLabel6)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(339, 339, 339))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(163, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -182,6 +261,23 @@ public class Prestamos extends javax.swing.JFrame {
         me.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jBAtrasActionPerformed
+
+    private void jTFBuscarPrestamoPorLectorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFBuscarPrestamoPorLectorKeyPressed
+        // TODO add your handling code here:
+        this.jTPrestamos.setModel(buscarPrestamos(obtenerIdLector(jTFBuscarPrestamoPorLector.getText())));
+        tamanos(jTPrestamos);
+    }//GEN-LAST:event_jTFBuscarPrestamoPorLectorKeyPressed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        jTPrestamos.setModel(mostrarPrestamos());
+        tamanos(jTPrestamos);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTPrestamosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTPrestamosMouseClicked
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, selected());
+    }//GEN-LAST:event_jTPrestamosMouseClicked
 
     /**
      * @param args the command line arguments
@@ -220,19 +316,39 @@ public class Prestamos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAtras;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTFBuscarPrestamoPorLector;
     private javax.swing.JTable jTPrestamos;
     // End of variables declaration//GEN-END:variables
 
     private void tamanos(JTable tabla) {
         TableColumnModel columnModel = tabla.getColumnModel();
-        columnModel.getColumn(0).setPreferredWidth(50);
+        columnModel.getColumn(0).setPreferredWidth(5);
         columnModel.getColumn(1).setPreferredWidth(50);
         columnModel.getColumn(2).setPreferredWidth(50);
         columnModel.getColumn(3).setPreferredWidth(50);
-        columnModel.getColumn(4).setPreferredWidth(10);
+        columnModel.getColumn(4).setPreferredWidth(50);
         columnModel.getColumn(5).setPreferredWidth(10);
+        columnModel.getColumn(6).setPreferredWidth(10);
+    }
+    
+    public String selected() {
+        String id = null;
+        TableModel tablaModelo;
+        tablaModelo = (TableModel) jTPrestamos.getModel();
+        id = String.valueOf(tablaModelo.getValueAt(jTPrestamos.getSelectedRow(), 0));
+
+        if (id.isEmpty()) {
+//           JOptionPane.showMessageDialog(null, id);
+            return "Debe seleccionar un dato";
+        } else {
+            JOptionPane.showMessageDialog(null, id);
+            return id;
+        }
     }
 }

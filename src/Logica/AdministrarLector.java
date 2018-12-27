@@ -50,4 +50,11 @@ public class AdministrarLector {
         listaLector = rel.buscarLector(n);
         return listaLector;
     }
+    
+    public Lector obtenerIdLector(String nombre) {
+        Lector lec = new Lector();
+        QueryLector rel = new QueryLector();
+        lec = rel.obtenerIdLector(nombre);
+        return lec;
+    }
 }
