@@ -66,5 +66,16 @@ public class AdministrarAutor {
         au = rel.obtenerIdAutor(n);
         return au;
     }
+    
+     /**
+     * Devuelve el nombre del autor a partir de su ID
+     */
+    public String ObtenerAut(int y) {
+        String g;
+        Autor au = new Autor();
+        au = obtenerAutor(y);
+        g = au.getNombre() + " " + au.getApellido();
+        return g;
+    }
 
 }

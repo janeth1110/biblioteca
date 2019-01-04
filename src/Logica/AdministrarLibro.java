@@ -57,4 +57,12 @@ public class AdministrarLibro {
         cantidad = me.obtenerEjemplares(id);
         return cantidad;
     }
+    
+    
+    // para obtener ejemplares por libro
+    public int ObtenerEjemplares(int y) {
+        int g;
+        g = mostrarEjemplar(y);
+        return g;
+    }
 }

@@ -8,9 +8,7 @@ package Interfaz;
 import Logica.*;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -28,6 +26,7 @@ public class RealizarPrestamo extends javax.swing.JFrame {
     AdministrarIdioma ai = new AdministrarIdioma();
     AdministrarEjemplar aej = new AdministrarEjemplar();
     AdministrarPrestamo ape = new AdministrarPrestamo();
+    Tablas tabla = new Tablas();
 
     Prestamo prestamo = new Prestamo();
     Date fecha = new Date();
@@ -39,9 +38,9 @@ public class RealizarPrestamo extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         jTLectores.setModel(mostrarLector());
-        tamañosLector(jTLectores);
+        tabla.resizeColumnWidth(jTLectores);
         jTLibros.setModel(mostrarLibros());
-        tamanosLibro(jTLibros);
+        tabla.resizeColumnWidth(jTLibros);
         fechaPrestamo();
     }
 
@@ -105,17 +104,6 @@ public class RealizarPrestamo extends javax.swing.JFrame {
         }
     }
 
-    public void tamañosLector(JTable tabla) {
-        TableColumnModel columnModel = tabla.getColumnModel();
-        columnModel.getColumn(0).setPreferredWidth(1);
-        columnModel.getColumn(1).setPreferredWidth(45);
-        columnModel.getColumn(2).setPreferredWidth(45);
-//        columnModel.getColumn(3).setPreferredWidth(1);
-//        columnModel.getColumn(4).setPreferredWidth(100);
-//        columnModel.getColumn(5).setPreferredWidth(50);
-        columnModel.getColumn(3).setPreferredWidth(9);
-    }
-
     public DefaultTableModel buscarLector(String n) {
         List<Lector> lectores2 = new ArrayList<Lector>();
         DefaultTableModel res = new DefaultTableModel();
@@ -174,7 +162,7 @@ public class RealizarPrestamo extends javax.swing.JFrame {
 //            res.setValueAt(l.getAño(), i, 5);
             res.setValueAt(l.getDescripcion(), i, 3);
             res.setValueAt(l.getEdicion(), i, 4);
-            res.setValueAt(ObtenerIdio(l.getIdioma()), i, 5);
+            res.setValueAt(ai.ObtenerIdio(l.getIdioma()), i, 5);
             i++;
         }
         return res;
@@ -208,24 +196,10 @@ public class RealizarPrestamo extends javax.swing.JFrame {
         }
     }
 
-    public void tamanosLibro(JTable tabla) {
-        TableColumnModel columnModel = tabla.getColumnModel();
-        columnModel.getColumn(0).setPreferredWidth(1);
-//        columnModel.getColumn(1).setPreferredWidth(10);
-//        columnModel.getColumn(2).setPreferredWidth(25);
-//        columnModel.getColumn(3).setPreferredWidth(50);
-        columnModel.getColumn(1).setPreferredWidth(40);
-        columnModel.getColumn(2).setPreferredWidth(125);
-//        columnModel.getColumn(5).setPreferredWidth(25);
-        columnModel.getColumn(3).setPreferredWidth(100);
-        columnModel.getColumn(4).setPreferredWidth(25);
-        columnModel.getColumn(5).setPreferredWidth(25);
-    }
-
     public DefaultTableModel buscarLibros(String n) {
         List<Libro> libros2 = new ArrayList<Libro>();
         DefaultTableModel res = new DefaultTableModel();
-        res.addColumn("Codigo libro");
+        res.addColumn("ID");
 //        res.addColumn("Ejemplares");
 //        res.addColumn("Categoria");
         res.addColumn("Autor");
@@ -252,7 +226,7 @@ public class RealizarPrestamo extends javax.swing.JFrame {
 //            res.setValueAt(l.getAño(), i, 5);
             res.setValueAt(l.getDescripcion(), i, 3);
             res.setValueAt(l.getEdicion(), i, 4);
-            res.setValueAt(ObtenerIdio(l.getIdioma()), i, 5);
+            res.setValueAt(ai.ObtenerIdio(l.getIdioma()), i, 5);
             i++;
         }
         return res;
@@ -273,14 +247,6 @@ public class RealizarPrestamo extends javax.swing.JFrame {
         return g;
     }
 
-    // obtener idioma desde id idioma
-    public String ObtenerIdio(int y) {
-        String g;
-        Idioma id = new Idioma();
-        id = ai.devolverIdioma(y);
-        g = id.getIdioma();
-        return g;
-    }
 
     public DefaultTableModel mostrarEjemplares(int d) {
 //        String estado="Prestado";
@@ -356,14 +322,6 @@ public class RealizarPrestamo extends javax.swing.JFrame {
 //            JOptionPane.showMessageDialog(null, "Debe seleccionar una Editorial");
             return id;
         }
-    }
-
-    public void tamanosEjemplar(JTable tabla) {
-        TableColumnModel columnModel = tabla.getColumnModel();
-        columnModel.getColumn(0).setPreferredWidth(10);
-        columnModel.getColumn(1).setPreferredWidth(25);
-        columnModel.getColumn(2).setPreferredWidth(40);
-        columnModel.getColumn(2).setPreferredWidth(25);
     }
 
     public void fechaPrestamo() {
@@ -622,7 +580,7 @@ public class RealizarPrestamo extends javax.swing.JFrame {
                 .addComponent(jTFBuscarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jBLimpiarBusquedaNombre)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -754,7 +712,7 @@ public class RealizarPrestamo extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane1)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 633, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -789,19 +747,19 @@ public class RealizarPrestamo extends javax.swing.JFrame {
     private void jBLimpiarLibrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimpiarLibrosActionPerformed
         // TODO add your handling code here:
         jTLibros.setModel(mostrarLibros());
-        tamanosLibro(jTLibros);
+        tabla.resizeColumnWidth(jTLibros);
     }//GEN-LAST:event_jBLimpiarLibrosActionPerformed
 
     private void jBLimpiarBusquedaNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimpiarBusquedaNombreActionPerformed
         // TODO add your handling code here:
         jTLectores.setModel(mostrarLector());
-        tamañosLector(jTLectores);
+        tabla.resizeColumnWidth(jTLectores);
     }//GEN-LAST:event_jBLimpiarBusquedaNombreActionPerformed
 
     private void jTFBuscarNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFBuscarNombreKeyTyped
         // TODO add your handling code here:
         this.jTLectores.setModel(buscarLector(jTFBuscarNombre.getText()));
-        tamañosLector(jTLectores);
+        tabla.resizeColumnWidth(jTLectores);
     }//GEN-LAST:event_jTFBuscarNombreKeyTyped
 
     private void jTLectoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTLectoresMouseClicked
@@ -813,14 +771,14 @@ public class RealizarPrestamo extends javax.swing.JFrame {
     private void jTFBuscarLibroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFBuscarLibroKeyTyped
         // TODO add your handling code here:
         this.jTLibros.setModel(buscarLibros(jTFBuscarLibro.getText()));
-        tamanosLibro(jTLibros);
+        tabla.resizeColumnWidth(jTLibros);
     }//GEN-LAST:event_jTFBuscarLibroKeyTyped
 
     private void jTLibrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTLibrosMouseClicked
         // TODO add your handling code here:
         jTFLibroSeleccionado.setText(selectedBookName());
         jTEjemplares.setModel(mostrarEjemplares(Integer.parseInt(selectedBookId())));
-        tamanosEjemplar(jTEjemplares);
+        tabla.resizeColumnWidth(jTEjemplares);
         jTFEjemplar.setText("");
         jTFUbicacion.setText("");
     }//GEN-LAST:event_jTLibrosMouseClicked

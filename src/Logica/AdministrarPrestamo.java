@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import java.sql.Date;
 
 
 /**
@@ -35,6 +36,11 @@ public class AdministrarPrestamo {
         return real.actualizarDisponibilidadEjemplar(id);
     }
     
+    public boolean devolucionPrestamo(int idPrestamo, Date fechaDevolucion, String estado) {
+        Realizacion real = new Realizacion();
+        return real.devolucionPrestamo(idPrestamo, fechaDevolucion, estado);
+    }
+    
     public List<Prestamo> mostrarPrestamo() {
         List<Prestamo> listaPrestamo = new ArrayList<Prestamo>();
         Realizacion rel = new Realizacion();
@@ -42,15 +48,14 @@ public class AdministrarPrestamo {
         return listaPrestamo;
     }
     
-    //Buscar prestamos
+    //Buscar prestamos, devuelve lista de prestamos
     public List <Prestamo> buscarPrestamo(int n){
         List<Prestamo> listaPrestamos = new ArrayList<Prestamo>();
         Realizacion rel = new Realizacion();
         listaPrestamos = rel.buscarPrestamo(n);
         return listaPrestamos;
     }
-
-    
+ 
     //obtener tipo de prestamo seleccionado de comboBox   
     public String tipoPrestamo(JComboBox<String> tipoPrestamo) {
         int selected;
@@ -68,11 +73,14 @@ public class AdministrarPrestamo {
         }
         return tipo;
     }
-    
-    //PARA FORMULARIO
-    
-    //Obtener libro a partir de ejemplar
-    
+
+    //Obtener prestamo para devolucion
+    public Prestamo obtenerPrestamo (int id){
+        Prestamo prestamo = new Prestamo();
+        Realizacion rel = new Realizacion();
+        prestamo = rel.obtenerPrestamo(id);
+        return prestamo;
+    }   
     
     
 }

@@ -10,9 +10,7 @@ import Logica.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 
 /**
@@ -22,6 +20,7 @@ import javax.swing.table.TableModel;
 public class MostrarAutor extends javax.swing.JFrame {
 
     AdministrarAutor aa = new AdministrarAutor();
+    Tablas tabla = new Tablas();
 
     /**
      * Creates new form MostrarAutor
@@ -30,7 +29,7 @@ public class MostrarAutor extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         jTAutor.setModel(mostrarAutor());
-        tamaños(jTAutor);
+        tabla.resizeColumnWidth(jTAutor);
     }
 
     public DefaultTableModel mostrarAutor() {
@@ -66,13 +65,6 @@ public class MostrarAutor extends javax.swing.JFrame {
 //            JOptionPane.showMessageDialog(null, "Debe seleccionar una Editorial");
             return id;
         }
-    }
-
-    public void tamaños(JTable tabla) {
-        TableColumnModel columnModel = tabla.getColumnModel();
-        columnModel.getColumn(0).setPreferredWidth(1);
-        columnModel.getColumn(1).setPreferredWidth(150);
-        columnModel.getColumn(2).setPreferredWidth(150);
     }
 
     public DefaultTableModel BuscarAutor(String n) {
@@ -298,7 +290,7 @@ public class MostrarAutor extends javax.swing.JFrame {
 
     private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
         this.jTAutor.setModel(BuscarAutor(jTFNombreBuscar.getText()));
-        tamaños(jTAutor);
+        tabla.resizeColumnWidth(jTAutor);
     }//GEN-LAST:event_jBBuscarActionPerformed
 
     /**

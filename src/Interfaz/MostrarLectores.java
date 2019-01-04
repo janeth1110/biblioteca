@@ -10,8 +10,6 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import Logica.*;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 
 /**
@@ -21,6 +19,7 @@ import javax.swing.table.TableModel;
 public class MostrarLectores extends javax.swing.JFrame {
 
     AdministrarLector ae = new AdministrarLector();
+    Tablas tabla = new Tablas();
 
     /**
      * Creates new form MostrarLectores
@@ -29,13 +28,13 @@ public class MostrarLectores extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         jTLectores.setModel(mostrarLector());
-        tamaños(jTLectores);
+        tabla.resizeColumnWidth(jTLectores);
     }
 
     public DefaultTableModel mostrarLector() {
         List<Lector> lectores2 = new ArrayList<Lector>();
         DefaultTableModel res = new DefaultTableModel();
-        res.addColumn("Codigo");
+        res.addColumn("ID");
         res.addColumn("Nombres");
         res.addColumn("Apellidos");
         res.addColumn("Sexo");
@@ -74,16 +73,6 @@ public class MostrarLectores extends javax.swing.JFrame {
 //            JOptionPane.showMessageDialog(null, "Debe seleccionar una Editorial");
             return id;
         }
-    }
-
-    public void tamaños(JTable tabla) {
-        TableColumnModel columnModel = tabla.getColumnModel();
-        columnModel.getColumn(0).setPreferredWidth(1);
-        columnModel.getColumn(1).setPreferredWidth(100);
-        columnModel.getColumn(2).setPreferredWidth(100);
-        columnModel.getColumn(3).setPreferredWidth(1);
-        columnModel.getColumn(4).setPreferredWidth(100);
-        columnModel.getColumn(5).setPreferredWidth(50);
     }
 
     public DefaultTableModel buscarLector(String n) {
@@ -324,13 +313,13 @@ public class MostrarLectores extends javax.swing.JFrame {
     private void jbBuscarLectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarLectorActionPerformed
         // TODO add your handling code here:
         this.jTLectores.setModel(buscarLector(jTFBuscarNombre.getText()));
-        tamaños(jTLectores);
+        tabla.resizeColumnWidth(jTLectores);
     }//GEN-LAST:event_jbBuscarLectorActionPerformed
 
     private void jTFBuscarNombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFBuscarNombreKeyPressed
         // TODO add your handling code here:
         this.jTLectores.setModel(buscarLector(jTFBuscarNombre.getText()));
-        tamaños(jTLectores);
+        tabla.resizeColumnWidth(jTLectores);
     }//GEN-LAST:event_jTFBuscarNombreKeyPressed
 
     /**

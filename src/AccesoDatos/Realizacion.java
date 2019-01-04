@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
 public class Realizacion {
 
     private conexion con = new conexion();
+    public Prestamo prestamo = new Prestamo();
 
     public boolean agregarPrestamo(int idEjemplar, int idLector, Date fechaPrestamo, Date fechaDevolucion, String devolucion, String tipo) {
 
@@ -88,6 +89,32 @@ public class Realizacion {
         }
     }
 
+    public boolean devolucionPrestamo(int idPrestamo, Date fechaDevolucion, String devolucion) {
+
+        try {
+            int rows_updated = 0;
+            PreparedStatement stmt1 = con.conectar().prepareStatement("UPDATE biblioteca.prestamo SET fecha_devolucion = ?, devolucion=? WHERE idprestamo = " + idPrestamo);
+//            stmt1.setInt(1, idPrestamo);
+            stmt1.setDate(1, fechaDevolucion);
+            stmt1.setString(2, devolucion);
+            rows_updated = stmt1.executeUpdate();
+//            JOptionPane.showMessageDialog(null, rows_updated);
+            con.desconectar();
+
+            if (rows_updated == 1) {
+                JOptionPane.showMessageDialog(null, "Base de datos actualizada exitosamente!!");
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(null, "No se pudo realizar la devolucion, favor verifique los datos");
+                return false;
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
+            return false;
+        }
+    }
+
     public List<Prestamo> mostrarPrestamos() {
         List<Prestamo> listaPrestamo = new ArrayList<Prestamo>();
         try {
@@ -150,6 +177,31 @@ public class Realizacion {
         }
         con.desconectar();
         return listaPrestamo;
+    }
+
+    public Prestamo obtenerPrestamo(int id) {
+        try {
+            Statement sentencia = null;
+            ResultSet resultado = null;
+
+            sentencia = con.conectar().createStatement();
+            resultado = sentencia.executeQuery("SELECT * FROM biblioteca.prestamo WHERE idprestamo= " + id);
+
+            resultado.beforeFirst();
+            resultado.last();
+
+            prestamo.setIdEjemplar(resultado.getInt("idejemplar"));
+            prestamo.setIdPrestamo(resultado.getInt("idprestamo"));
+            prestamo.setIdLector(resultado.getInt("id_lector"));
+            prestamo.setFechaPrestamo(resultado.getDate("fecha_prestamo"));
+            prestamo.setFechaDevolucion(resultado.getDate("fecha_devolucion"));
+            prestamo.setDevolucion(resultado.getString("devolucion"));
+            prestamo.setTipoPrestamo(resultado.getString("tipo_prestamo"));
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        con.desconectar();
+        return prestamo;
     }
 
 }

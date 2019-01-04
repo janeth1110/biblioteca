@@ -9,9 +9,7 @@ import Logica.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 
 /**
@@ -21,6 +19,7 @@ import javax.swing.table.TableModel;
 public class MostrarCategoria extends javax.swing.JFrame {
 
     AdministrarCategoria ae = new AdministrarCategoria();
+    Tablas tabla = new Tablas();
 
     /**
      * Creates new form MostrarCategoria
@@ -29,7 +28,7 @@ public class MostrarCategoria extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         jTCategoria.setModel(mostrarCategoria());
-        tamaños(jTCategoria);
+        tabla.resizeColumnWidth(jTCategoria);
     }
 
     public DefaultTableModel mostrarCategoria() {
@@ -65,7 +64,6 @@ public class MostrarCategoria extends javax.swing.JFrame {
             return id;
 
         }
-
     }
     
    public DefaultTableModel buscarCategoria(String n) {
@@ -83,14 +81,7 @@ public class MostrarCategoria extends javax.swing.JFrame {
             res.setValueAt(e.getCategoria(), i, 1);
             i++;
         }
-
         return res;
-    }
-    
-    public void tamaños(JTable tabla) {
-        TableColumnModel columnModel = tabla.getColumnModel();
-        columnModel.getColumn(0).setPreferredWidth(1);
-        columnModel.getColumn(1).setPreferredWidth(250);
     }
 
     public boolean isCellEditable(int row, int column) {
@@ -322,13 +313,13 @@ public class MostrarCategoria extends javax.swing.JFrame {
     private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
         // TODO add your handling code here:
         this.jTCategoria.setModel(buscarCategoria(jtfBuscarNombre.getText()));
-        tamaños(jTCategoria);
+        tabla.resizeColumnWidth(jTCategoria);
     }//GEN-LAST:event_jBBuscarActionPerformed
 
     private void jtfBuscarNombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfBuscarNombreKeyPressed
         // TODO add your handling code here:
         this.jTCategoria.setModel(buscarCategoria(jtfBuscarNombre.getText()));
-        tamaños(jTCategoria);
+        tabla.resizeColumnWidth(jTCategoria);
     }//GEN-LAST:event_jtfBuscarNombreKeyPressed
 
     /**

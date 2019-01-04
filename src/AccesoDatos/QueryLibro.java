@@ -78,7 +78,7 @@ public class QueryLibro {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
-con.desconectar();
+        con.desconectar();
         return libro;
     }
 
@@ -190,7 +190,7 @@ con.desconectar();
         con.desconectar();
         return listaLibro;
     }
-    
+
     public int obtenerEjemplares(int id) {
         int numero = 0;
         try {
@@ -198,9 +198,9 @@ con.desconectar();
             ResultSet resultado = null;
 
             sentencia = con.conectar().createStatement();
-            resultado = sentencia.executeQuery("SELECT COUNT(idejemplar) FROM biblioteca.ejemplar WHERE idlibro= "+id);
+            resultado = sentencia.executeQuery("SELECT COUNT(idejemplar) FROM biblioteca.ejemplar WHERE idlibro= " + id);
             resultado.last();
-            
+
             numero = resultado.getInt(1);
             con.desconectar();
         } catch (SQLException e) {

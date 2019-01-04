@@ -5,19 +5,80 @@
  */
 package Interfaz;
 
+import Logica.AdministrarEjemplar;
+import Logica.AdministrarLector;
+import Logica.AdministrarLibro;
+import Logica.AdministrarPrestamo;
+import Logica.Lector;
+import Logica.Libro;
+import Logica.Prestamo;
+import java.util.Date;
+import javax.swing.JTextField;
+
 /**
  *
  * @author delmy
  */
 public class Devolucion extends javax.swing.JFrame {
+    
+    AdministrarPrestamo adpres = new AdministrarPrestamo();
+    AdministrarLibro al = new AdministrarLibro();
+    AdministrarEjemplar ae = new AdministrarEjemplar();
+    AdministrarLector ale = new AdministrarLector();
+    
+    int idPrestamo = 0;
+    Date fecha = new Date();
 
     /**
      * Creates new form Devolucion
      */
     public Devolucion() {
         initComponents();
+        setLocationRelativeTo(null);
+    }
+    
+    public Devolucion(int x) {
+        initComponents();
+        setLocationRelativeTo(null);
+        mostrar(x);
+        idPrestamo=x;
+        fechaPrestamo();
+    }
+    
+    public void mostrar(int x){
+        Prestamo prestamo = new Prestamo();
+        prestamo=adpres.obtenerPrestamo(x);
+        jTFNombreLector.setText(ObtenerNombreLector(prestamo.getIdLector()));
+        jTFTituloLibro.setText(ObtenerLibro(prestamo.getIdEjemplar()));
+        jDCFechaPrestamo.setDate(prestamo.getFechaPrestamo());
+        jDCFechaDevolucion.setDate(prestamo.getFechaDevolucion());
+    }
+   
+    public void fechaPrestamo() {
+        ((JTextField) this.jDCFechaDevolucion.getDateEditor()).setEditable(false);
+        jDCFechaDevolucion.getCalendarButton().setEnabled(false);
+        jDCFechaPrestamo.getCalendarButton().setEnabled(false);
+        jDCFechaDevolucion.setDate(fecha);
+    }
+    
+    //devuelve el nombre del lector a partir del id
+    public String ObtenerNombreLector(int x) {
+        String f = "";
+        Lector lector = new Lector();
+        lector = ale.obtenerLector(x);
+        f = lector.getNombre() + " " + lector.getApellido();
+        return f;
     }
 
+    //devuelve el nombre del libro a partir del id de ejemplar
+    public String ObtenerLibro(int x) {
+        String f = "";
+        int y = ae.devolverIdLibro(x);
+        Libro libro = new Libro();
+        libro = al.obtenerLibro(y);
+        f = libro.getTitulo();
+        return f;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,6 +94,15 @@ public class Devolucion extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jTFTituloLibro = new javax.swing.JTextField();
+        jTFNombreLector = new javax.swing.JTextField();
+        jDCFechaPrestamo = new com.toedter.calendar.JDateChooser();
+        jDCFechaDevolucion = new com.toedter.calendar.JDateChooser();
+        jCBEstado = new javax.swing.JComboBox<>();
+        jBConfirmar = new javax.swing.JButton();
+        jBCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,30 +125,88 @@ public class Devolucion extends javax.swing.JFrame {
 
         jLabel2.setText("Nombre de lector:");
 
-        jLabel3.setText("jLabel3");
+        jLabel3.setText("Fecha de prestamo:");
+
+        jLabel4.setText("Fecha de devolución:");
+
+        jLabel5.setText("Estado:");
+
+        jCBEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Completo" }));
+
+        jBConfirmar.setText("Confirmar");
+        jBConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBConfirmarActionPerformed(evt);
+            }
+        });
+
+        jBCancelar.setText("Cancelar");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
-                .addContainerGap(852, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTFNombreLector))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTFTituloLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(18, 18, 18)
+                                .addComponent(jCBEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(jDCFechaDevolucion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18)
+                                .addComponent(jDCFechaPrestamo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(149, 149, 149)
+                        .addComponent(jBConfirmar)
+                        .addGap(18, 18, 18)
+                        .addComponent(jBCancelar)))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jLabel1)
+                .addGap(16, 16, 16)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(jTFTituloLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jTFNombreLector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jDCFechaPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4))
+                    .addComponent(jDCFechaDevolucion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addContainerGap(372, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jCBEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(68, 68, 68)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBConfirmar)
+                    .addComponent(jBCancelar))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -86,24 +214,25 @@ public class Devolucion extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jBAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel6)
-                .addGap(351, 351, 351))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jBAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(160, 160, 160)
+                        .addComponent(jLabel6))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jBAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(25, 25, 25))
         );
 
         pack();
@@ -115,6 +244,17 @@ public class Devolucion extends javax.swing.JFrame {
         me.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jBAtrasActionPerformed
+
+    private void jBConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBConfirmarActionPerformed
+        // TODO add your handling code here:
+        try {
+            java.sql.Date sqlDate;
+            java.util.Date date = jDCFechaDevolucion.getDate();
+            sqlDate = new java.sql.Date(date.getTime());
+            adpres.devolucionPrestamo(idPrestamo, sqlDate, "cerrado");
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jBConfirmarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -153,10 +293,19 @@ public class Devolucion extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAtras;
+    private javax.swing.JButton jBCancelar;
+    private javax.swing.JButton jBConfirmar;
+    private javax.swing.JComboBox<String> jCBEstado;
+    private com.toedter.calendar.JDateChooser jDCFechaDevolucion;
+    private com.toedter.calendar.JDateChooser jDCFechaPrestamo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField jTFNombreLector;
+    private javax.swing.JTextField jTFTituloLibro;
     // End of variables declaration//GEN-END:variables
 }

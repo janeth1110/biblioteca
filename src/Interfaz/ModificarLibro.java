@@ -5,16 +5,7 @@
  */
 package Interfaz;
 
-import Logica.AdministrarAutor;
-import Logica.AdministrarCategoria;
-import Logica.AdministrarEditorial;
-import Logica.AdministrarIdioma;
-import Logica.AdministrarLibro;
-import Logica.Autor;
-import Logica.Categoria;
-import Logica.Editorial;
-import Logica.Idioma;
-import Logica.Libro;
+import Logica.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -28,8 +19,7 @@ public class ModificarLibro extends javax.swing.JFrame {
     AdministrarCategoria ae = new AdministrarCategoria();
     AdministrarAutor aa = new AdministrarAutor();
     AdministrarEditorial ac = new AdministrarEditorial();
-    AdministrarIdioma ai = new AdministrarIdioma();
-    
+    AdministrarIdioma ai = new AdministrarIdioma(); 
     AdministrarLibro adli = new AdministrarLibro();
     int temp;
 

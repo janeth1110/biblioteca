@@ -7,12 +7,11 @@ package Interfaz;
 
 import Logica.AdministrarEditorial;
 import Logica.Editorial;
+import Logica.Tablas;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 
 /**
@@ -22,6 +21,7 @@ import javax.swing.table.TableModel;
 public class MostrarEditorial extends javax.swing.JFrame {
 
     AdministrarEditorial ae = new AdministrarEditorial();
+    Tablas tabla = new Tablas();
 
     /**
      * Creates new form EditarEditorial
@@ -30,7 +30,7 @@ public class MostrarEditorial extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         jTEditoriales.setModel(mostrarEditorial());
-        tamaños(jTEditoriales);
+        tabla.resizeColumnWidth(jTEditoriales);
     }
 
     public DefaultTableModel mostrarEditorial() {
@@ -71,14 +71,6 @@ public class MostrarEditorial extends javax.swing.JFrame {
 
         }
 
-    }
-
-    public void tamaños(JTable tabla) {
-        TableColumnModel columnModel = tabla.getColumnModel();
-        columnModel.getColumn(0).setPreferredWidth(1);
-        columnModel.getColumn(1).setPreferredWidth(200);
-        columnModel.getColumn(2).setPreferredWidth(250);
-        columnModel.getColumn(3).setPreferredWidth(30);
     }
 
     public DefaultTableModel buscarEditorial(String n) {
@@ -312,7 +304,7 @@ public class MostrarEditorial extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         this.jTEditoriales.setModel(buscarEditorial(jtfBuscarNombre.getText()));
-        tamaños(jTEditoriales);
+        tabla.resizeColumnWidth(jTEditoriales);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

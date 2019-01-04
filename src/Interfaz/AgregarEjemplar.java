@@ -9,12 +9,11 @@ import Logica.AdministrarEjemplar;
 import Logica.AdministrarLibro;
 import Logica.Ejemplar;
 import Logica.Libro;
+import Logica.Tablas;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -24,9 +23,9 @@ public class AgregarEjemplar extends javax.swing.JFrame {
 
     AdministrarEjemplar aej = new AdministrarEjemplar();
     AdministrarLibro ali = new AdministrarLibro();
-
     Ejemplar ejemplar = new Ejemplar();
     Libro libro = new Libro();
+    Tablas tabla = new Tablas();
 
     int temp = 0;
     int idLibro;
@@ -44,7 +43,7 @@ public class AgregarEjemplar extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         obtenerEjemplar(i);
         jTEjemplares.setModel(mostrarEjemplares(idLibro));
-        tamanos(jTEjemplares);
+        tabla.resizeColumnWidth(jTEjemplares);
     }
 
     public DefaultTableModel mostrarEjemplares(int d) {
@@ -74,13 +73,6 @@ public class AgregarEjemplar extends javax.swing.JFrame {
             i++;
         }
         return res;
-    }
-    
-    public void tamanos(JTable tabla){
-        TableColumnModel columnModel = tabla.getColumnModel();
-        columnModel.getColumn(0).setPreferredWidth(25);
-        columnModel.getColumn(1).setPreferredWidth(50);
-        columnModel.getColumn(1).setPreferredWidth(25);
     }
 
     public Ejemplar obtenerEjemplar(int x) {
@@ -296,7 +288,7 @@ public class AgregarEjemplar extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ha sucedido un error, por favor revise los datos ingresados");
         }
         jTEjemplares.setModel(mostrarEjemplares(idLibro));
-        tamanos(jTEjemplares);
+        tabla.resizeColumnWidth(jTEjemplares);
     }//GEN-LAST:event_jBGuardarActionPerformed
 
     /**
