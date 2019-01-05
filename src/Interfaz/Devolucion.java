@@ -240,7 +240,7 @@ public class Devolucion extends javax.swing.JFrame {
 
     private void jBAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAtrasActionPerformed
         // TODO add your handling code here:
-        Main me = new Main();
+        Principal me = new Principal();
         me.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jBAtrasActionPerformed

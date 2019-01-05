@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Interfaz;
 
 import Logica.*;
@@ -14,10 +9,6 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-/**
- *
- * @author delmy
- */
 public class RealizarPrestamo extends javax.swing.JFrame {
 
     AdministrarLector ae = new AdministrarLector();
@@ -26,6 +17,7 @@ public class RealizarPrestamo extends javax.swing.JFrame {
     AdministrarIdioma ai = new AdministrarIdioma();
     AdministrarEjemplar aej = new AdministrarEjemplar();
     AdministrarPrestamo ape = new AdministrarPrestamo();
+    Prestamos pres = new Prestamos();
     Tablas tabla = new Tablas();
 
     Prestamo prestamo = new Prestamo();
@@ -50,9 +42,6 @@ public class RealizarPrestamo extends javax.swing.JFrame {
         res.addColumn("Codigo");
         res.addColumn("Nombres");
         res.addColumn("Apellidos");
-//        res.addColumn("Sexo");
-//        res.addColumn("Fecha Nacimiento");
-//        res.addColumn("Telefono");
         res.addColumn("Condicion");
 
         ae.mostrarLector();
@@ -64,9 +53,6 @@ public class RealizarPrestamo extends javax.swing.JFrame {
             res.setValueAt(l.getId(), i, 0);
             res.setValueAt(l.getNombre(), i, 1);
             res.setValueAt(l.getApellido(), i, 2);
-//            res.setValueAt(l.getSexo(), i, 3);
-//            res.setValueAt(l.getFecha_nac(), i, 4);
-//            res.setValueAt(l.getTelefono(), i, 5);
             res.setValueAt(l.getCondicion(), i, 3);
             i++;
         }
@@ -74,7 +60,7 @@ public class RealizarPrestamo extends javax.swing.JFrame {
     }
 
     public String selectedReaderId() {
-        String id = null;
+        String id;
         TableModel tablaModelo = (TableModel) jTLectores.getModel();
         id = String.valueOf(tablaModelo.getValueAt(jTLectores.getSelectedRow(), 0));
         if (id.isEmpty()) {
@@ -88,9 +74,9 @@ public class RealizarPrestamo extends javax.swing.JFrame {
     }
 
     public String selectedReaderName() {
-        String nombre = null;
-        String apellido = null;
-        String res = null;
+        String nombre;
+        String apellido;
+        String res;
         TableModel tablaModelo = (TableModel) jTLectores.getModel();
         nombre = String.valueOf(tablaModelo.getValueAt(jTLectores.getSelectedRow(), 1));
         apellido = String.valueOf(tablaModelo.getValueAt(jTLectores.getSelectedRow(), 2));
@@ -110,9 +96,6 @@ public class RealizarPrestamo extends javax.swing.JFrame {
         res.addColumn("Codigo");
         res.addColumn("Nombres");
         res.addColumn("Apellidos");
-//        res.addColumn("Sexo");
-//        res.addColumn("Fecha Nacimiento");
-//        res.addColumn("Telefono");
         res.addColumn("Condicion");
 
         ae.buscarLector(n);
@@ -123,9 +106,6 @@ public class RealizarPrestamo extends javax.swing.JFrame {
             res.setValueAt(l.getId(), i, 0);
             res.setValueAt(l.getNombre(), i, 1);
             res.setValueAt(l.getApellido(), i, 2);
-//            res.setValueAt(l.getSexo(), i, 3);
-//            res.setValueAt(l.getFecha_nac(), i, 4);
-//            res.setValueAt(l.getTelefono(), i, 5);
             res.setValueAt(l.getCondicion(), i, 3);
             i++;
         }
@@ -136,12 +116,8 @@ public class RealizarPrestamo extends javax.swing.JFrame {
         List<Libro> libros2 = new ArrayList<Libro>();
         DefaultTableModel res = new DefaultTableModel();
         res.addColumn("Codigo libro");
-//        res.addColumn("Ejemplares");
-//        res.addColumn("Categoria");
         res.addColumn("Autor");
-//        res.addColumn("ISBN");
         res.addColumn("Titulo");
-//        res.addColumn("Año");
         res.addColumn("Descripción");
         res.addColumn("edicion");
         res.addColumn("Idioma");
@@ -153,13 +129,8 @@ public class RealizarPrestamo extends javax.swing.JFrame {
         for (Libro l : libros2) {
             res.addRow(new Object[]{});
             res.setValueAt(l.getId(), i, 0);
-//            res.setValueAt(ObtenerEjemplares(l.getId()), i, 1);
-//            res.setValueAt(l.getIdEditorial(), i, 1);
-//            res.setValueAt(obtenerCate(l.getIdCategoria()), i, 2);
             res.setValueAt(ObtenerAut(l.getIdAutor()), i, 1);
-//            res.setValueAt(l.getISBN(), i, 4);
             res.setValueAt(l.getTitulo(), i, 2);
-//            res.setValueAt(l.getAño(), i, 5);
             res.setValueAt(l.getDescripcion(), i, 3);
             res.setValueAt(l.getEdicion(), i, 4);
             res.setValueAt(ai.ObtenerIdio(l.getIdioma()), i, 5);
@@ -169,29 +140,25 @@ public class RealizarPrestamo extends javax.swing.JFrame {
     }
 
     public String selectedBookId() {
-        String id = null;
+        String id;
         TableModel tablaModelo;
         tablaModelo = (TableModel) jTLibros.getModel();
         id = String.valueOf(tablaModelo.getValueAt(jTLibros.getSelectedRow(), 0));
         if (id.isEmpty()) {
-//           JOptionPane.showMessageDialog(null, id);
             return "Debe seleccionar un dato";
         } else {
-//            JOptionPane.showMessageDialog(null, "Debe seleccionar una Editorial");
             return id;
         }
     }
 
     public String selectedBookName() {
-        String id = null;
+        String id;
         TableModel tablaModelo;
         tablaModelo = (TableModel) jTLibros.getModel();
         id = String.valueOf(tablaModelo.getValueAt(jTLibros.getSelectedRow(), 2));
         if (id.isEmpty()) {
-//           JOptionPane.showMessageDialog(null, id);
             return "Debe seleccionar un dato";
         } else {
-//            JOptionPane.showMessageDialog(null, "Debe seleccionar una Editorial");
             return id;
         }
     }
@@ -200,12 +167,8 @@ public class RealizarPrestamo extends javax.swing.JFrame {
         List<Libro> libros2 = new ArrayList<Libro>();
         DefaultTableModel res = new DefaultTableModel();
         res.addColumn("ID");
-//        res.addColumn("Ejemplares");
-//        res.addColumn("Categoria");
         res.addColumn("Autor");
-//        res.addColumn("ISBN");
         res.addColumn("Titulo");
-//        res.addColumn("Año");
         res.addColumn("Descripción");
         res.addColumn("edicion");
         res.addColumn("Idioma");
@@ -217,13 +180,8 @@ public class RealizarPrestamo extends javax.swing.JFrame {
         for (Libro l : libros2) {
             res.addRow(new Object[]{});
             res.setValueAt(l.getId(), i, 0);
-//            res.setValueAt(ObtenerEjemplares(l.getId()), i, 1);
-//            res.setValueAt(l.getIdEditorial(), i, 1);
-//            res.setValueAt(obtenerCate(l.getIdCategoria()), i, 2);
             res.setValueAt(ObtenerAut(l.getIdAutor()), i, 1);
-//            res.setValueAt(l.getISBN(), i, 4);
             res.setValueAt(l.getTitulo(), i, 2);
-//            res.setValueAt(l.getAño(), i, 5);
             res.setValueAt(l.getDescripcion(), i, 3);
             res.setValueAt(l.getEdicion(), i, 4);
             res.setValueAt(ai.ObtenerIdio(l.getIdioma()), i, 5);
@@ -235,7 +193,6 @@ public class RealizarPrestamo extends javax.swing.JFrame {
     public int ObtenerEjemplares(int y) {
         int g;
         g = ali.mostrarEjemplar(y);
-//        g = id.getIdioma();
         return g;
     }
 
@@ -247,10 +204,7 @@ public class RealizarPrestamo extends javax.swing.JFrame {
         return g;
     }
 
-
     public DefaultTableModel mostrarEjemplares(int d) {
-//        String estado="Prestado";
-//        int estad;
         List<Ejemplar> ejemplares2 = new ArrayList<Ejemplar>();
         DefaultTableModel res = new DefaultTableModel();
         res.addColumn("Código");
@@ -280,7 +234,7 @@ public class RealizarPrestamo extends javax.swing.JFrame {
 
     //Obtiene id de ejemplar seleccionado
     public String selectedNumberBookId() {
-        String id = null;
+        String id;
         TableModel tablaModelo = (TableModel) jTEjemplares.getModel();
         id = String.valueOf(tablaModelo.getValueAt(jTEjemplares.getSelectedRow(), 0));
         if (id.isEmpty()) {
@@ -295,7 +249,7 @@ public class RealizarPrestamo extends javax.swing.JFrame {
 
     //Obtener ejemplar seleccionado
     public String selectedBookNumber() {
-        String id = null;
+        String id;
         TableModel tablaModelo;
         tablaModelo = (TableModel) jTEjemplares.getModel();
         id = String.valueOf(tablaModelo.getValueAt(jTEjemplares.getSelectedRow(), 1));
@@ -310,7 +264,7 @@ public class RealizarPrestamo extends javax.swing.JFrame {
     }
 
     public String selectedBooklocation() {
-        String id = null;
+        String id;
         TableModel tablaModelo;
         tablaModelo = (TableModel) jTEjemplares.getModel();
         id = String.valueOf(tablaModelo.getValueAt(jTEjemplares.getSelectedRow(), 2));
@@ -338,9 +292,6 @@ public class RealizarPrestamo extends javax.swing.JFrame {
         jTFUbicacion.setText("");
         jDCFechaDevolucion.setDate(fecha);
         jCBTipoPrestamo.setSelectedIndex(0);
-//        jTLectores.setModel(null);
-//        jTLibros.setModel(null);
-//        jTEjemplares.setModel(null);
     }
 
     /**
@@ -352,7 +303,6 @@ public class RealizarPrestamo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jBAtras = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -387,20 +337,36 @@ public class RealizarPrestamo extends javax.swing.JFrame {
         jLNombreLibro = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTEjemplares = new javax.swing.JTable();
+        jLAtras = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMIRealizarPrestamo = new javax.swing.JMenuItem();
+        jMIDevolverLibro = new javax.swing.JMenuItem();
+        jMISalir = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jmiAgregarLibro = new javax.swing.JMenuItem();
+        jmiAdministrarLibro = new javax.swing.JMenuItem();
+        jmiAgregarCategorias = new javax.swing.JMenuItem();
+        jmiAdministrarCategorias = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jmiAgregarLector = new javax.swing.JMenuItem();
+        jmiAdministrarLectores = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
+        jMIAgregarAutor = new javax.swing.JMenuItem();
+        jMIAdministrarAutor = new javax.swing.JMenuItem();
+        jMIAgregarEditorial = new javax.swing.JMenuItem();
+        jMIAdministrarEditorial = new javax.swing.JMenuItem();
+        jMiReportes = new javax.swing.JMenu();
+        jMenu7 = new javax.swing.JMenu();
+        jMIAcercaDe = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Préstamo de libro");
 
-        jBAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
-        jBAtras.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBAtrasActionPerformed(evt);
-            }
-        });
-
         jLabel6.setBackground(new java.awt.Color(204, 255, 204));
-        jLabel6.setFont(new java.awt.Font("Maiandra GD", 1, 20)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(153, 0, 0));
+        jLabel6.setFont(new java.awt.Font("Consolas", 3, 30)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 102, 204));
         jLabel6.setText("Préstamo de libro");
         jLabel6.setToolTipText("");
 
@@ -451,43 +417,44 @@ public class RealizarPrestamo extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(79, 79, 79)
-                        .addComponent(jBLimpiarDato)
-                        .addGap(18, 18, 18)
-                        .addComponent(jBGuardar))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addComponent(jLabel10)
-                        .addGap(18, 18, 18)
-                        .addComponent(jCBTipoPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(27, 27, 27)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(7, 7, 7)
+                                .addComponent(jLabel10)
+                                .addGap(18, 18, 18)
+                                .addComponent(jCBTipoPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel9)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jDCFechaDevolucion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel1)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jTFLector, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel7)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jTFUbicacion))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel5)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jTFEjemplar))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel4)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jTFLibroSeleccionado))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel8)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jDCPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addGap(18, 18, 18)
-                                .addComponent(jDCFechaDevolucion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTFLector, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTFUbicacion))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTFEjemplar))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTFLibroSeleccionado))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addGap(18, 18, 18)
-                                .addComponent(jDCPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(82, Short.MAX_VALUE))
+                        .addGap(83, 83, 83)
+                        .addComponent(jBLimpiarDato)
+                        .addGap(26, 26, 26)
+                        .addComponent(jBGuardar)))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -520,16 +487,14 @@ public class RealizarPrestamo extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCBTipoPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
-                .addGap(45, 45, 45)
+                .addGap(62, 62, 62)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBGuardar)
-                    .addComponent(jBLimpiarDato))
-                .addContainerGap(99, Short.MAX_VALUE))
+                    .addComponent(jBLimpiarDato)
+                    .addComponent(jBGuardar))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-
-        jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel3.setForeground(new java.awt.Color(0, 153, 255));
 
         jTLectores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -570,17 +535,18 @@ public class RealizarPrestamo extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jScrollPane1)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(jScrollPane1))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTFBuscarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                        .addComponent(jBLimpiarBusquedaNombre)))
                 .addContainerGap())
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(jTFBuscarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jBLimpiarBusquedaNombre)
-                .addContainerGap(37, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -591,7 +557,7 @@ public class RealizarPrestamo extends javax.swing.JFrame {
                     .addComponent(jTFBuscarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBLimpiarBusquedaNombre))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -633,7 +599,8 @@ public class RealizarPrestamo extends javax.swing.JFrame {
             }
         });
 
-        jLNombreLibro.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLNombreLibro.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jLNombreLibro.setForeground(new java.awt.Color(0, 102, 204));
         jLNombreLibro.setText("Ejemplares");
 
         jTEjemplares.setModel(new javax.swing.table.DefaultTableModel(
@@ -666,8 +633,8 @@ public class RealizarPrestamo extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jTFBuscarLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jBLimpiarLibros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jBLimpiarLibros, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
+                        .addContainerGap(13, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -677,7 +644,7 @@ public class RealizarPrestamo extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLNombreLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLNombreLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(256, 256, 256))
         );
         jPanel2Layout.setVerticalGroup(
@@ -693,89 +660,247 @@ public class RealizarPrestamo extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addComponent(jLNombreLibro)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
                 .addGap(34, 34, 34))
         );
 
         jTabbedPane1.addTab("Confirmar libro", jPanel2);
+
+        jLAtras.setForeground(new java.awt.Color(0, 0, 255));
+        jLAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
+        jLAtras.setText("Atras");
+        jLAtras.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLAtrasMouseClicked(evt);
+            }
+        });
+
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/PrestarLibro.png"))); // NOI18N
+
+        jMenu1.setText("Archivo");
+
+        jMIRealizarPrestamo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
+        jMIRealizarPrestamo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/PrestarLibro-icono.png"))); // NOI18N
+        jMIRealizarPrestamo.setText("Prestar libro");
+        jMenu1.add(jMIRealizarPrestamo);
+
+        jMIDevolverLibro.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_MASK));
+        jMIDevolverLibro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/DevolverLibro-icono.png"))); // NOI18N
+        jMIDevolverLibro.setText("Devolver libro");
+        jMIDevolverLibro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIDevolverLibroActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMIDevolverLibro);
+
+        jMISalir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
+        jMISalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Salir.png"))); // NOI18N
+        jMISalir.setText("Salir");
+        jMISalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMISalirActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMISalir);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Libros y categorías");
+
+        jmiAgregarLibro.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
+        jmiAgregarLibro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/AgregarDocumento-icono.png"))); // NOI18N
+        jmiAgregarLibro.setText("Agregar libro");
+        jmiAgregarLibro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiAgregarLibroActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jmiAgregarLibro);
+
+        jmiAdministrarLibro.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.CTRL_MASK));
+        jmiAdministrarLibro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Libro-icono.png"))); // NOI18N
+        jmiAdministrarLibro.setText("Administrar libros");
+        jmiAdministrarLibro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiAdministrarLibroActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jmiAdministrarLibro);
+
+        jmiAgregarCategorias.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
+        jmiAgregarCategorias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/AgregarSimple-icono.png"))); // NOI18N
+        jmiAgregarCategorias.setText("Agregar categorias");
+        jmiAgregarCategorias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiAgregarCategoriasActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jmiAgregarCategorias);
+
+        jmiAdministrarCategorias.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
+        jmiAdministrarCategorias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/LibrosPrestados-icono.png"))); // NOI18N
+        jmiAdministrarCategorias.setText("Administrar categorias");
+        jmiAdministrarCategorias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiAdministrarCategoriasActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jmiAdministrarCategorias);
+
+        jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("Lectores");
+
+        jmiAgregarLector.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
+        jmiAgregarLector.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/AgregarPersona-icono.png"))); // NOI18N
+        jmiAgregarLector.setText("Agregar lector");
+        jmiAgregarLector.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiAgregarLectorActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jmiAgregarLector);
+
+        jmiAdministrarLectores.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_MASK));
+        jmiAdministrarLectores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Lector-icono.png"))); // NOI18N
+        jmiAdministrarLectores.setText("Administrar lectores");
+        jmiAdministrarLectores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiAdministrarLectoresActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jmiAdministrarLectores);
+
+        jMenuBar1.add(jMenu3);
+
+        jMenu5.setText("Autores y editoriales");
+
+        jMIAgregarAutor.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
+        jMIAgregarAutor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/AgregarPersona-icono.png"))); // NOI18N
+        jMIAgregarAutor.setText("Agregar Autor");
+        jMIAgregarAutor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIAgregarAutorActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMIAgregarAutor);
+
+        jMIAdministrarAutor.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_MASK));
+        jMIAdministrarAutor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/persona-icono.png"))); // NOI18N
+        jMIAdministrarAutor.setText("Administrar Autores");
+        jMIAdministrarAutor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIAdministrarAutorActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMIAdministrarAutor);
+
+        jMIAgregarEditorial.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
+        jMIAgregarEditorial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/AgregarSimple-icono.png"))); // NOI18N
+        jMIAgregarEditorial.setText("Agregar Editorial");
+        jMIAgregarEditorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIAgregarEditorialActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMIAgregarEditorial);
+
+        jMIAdministrarEditorial.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.CTRL_MASK));
+        jMIAdministrarEditorial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Editorial-icono.png"))); // NOI18N
+        jMIAdministrarEditorial.setText("Administrar Editorial");
+        jMIAdministrarEditorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIAdministrarEditorialActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMIAdministrarEditorial);
+
+        jMenuBar1.add(jMenu5);
+
+        jMiReportes.setText("Reportes");
+        jMenuBar1.add(jMiReportes);
+
+        jMenu7.setText("Ayuda");
+
+        jMIAcercaDe.setText("Acerca de");
+        jMIAcercaDe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIAcercaDeActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jMIAcercaDe);
+
+        jMenuBar1.add(jMenu7);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jBAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(375, 375, 375)
-                .addComponent(jLabel6)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 633, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLAtras)
+                        .addGap(284, 284, 284)
+                        .addComponent(jLabel6)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel12)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTabbedPane1)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jBAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel6)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jTabbedPane1)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLAtras)))
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTabbedPane1)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jBAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAtrasActionPerformed
-        // TODO add your handling code here:
-        Main me = new Main();
-        me.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jBAtrasActionPerformed
-
     private void jBLimpiarLibrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimpiarLibrosActionPerformed
-        // TODO add your handling code here:
         jTLibros.setModel(mostrarLibros());
         tabla.resizeColumnWidth(jTLibros);
     }//GEN-LAST:event_jBLimpiarLibrosActionPerformed
 
     private void jBLimpiarBusquedaNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimpiarBusquedaNombreActionPerformed
-        // TODO add your handling code here:
         jTLectores.setModel(mostrarLector());
         tabla.resizeColumnWidth(jTLectores);
     }//GEN-LAST:event_jBLimpiarBusquedaNombreActionPerformed
 
     private void jTFBuscarNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFBuscarNombreKeyTyped
-        // TODO add your handling code here:
         this.jTLectores.setModel(buscarLector(jTFBuscarNombre.getText()));
         tabla.resizeColumnWidth(jTLectores);
     }//GEN-LAST:event_jTFBuscarNombreKeyTyped
 
     private void jTLectoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTLectoresMouseClicked
-        // TODO add your handling code here:
         jTFLector.setText(selectedReaderName());
         selectedReaderId();
     }//GEN-LAST:event_jTLectoresMouseClicked
 
     private void jTFBuscarLibroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFBuscarLibroKeyTyped
-        // TODO add your handling code here:
         this.jTLibros.setModel(buscarLibros(jTFBuscarLibro.getText()));
         tabla.resizeColumnWidth(jTLibros);
     }//GEN-LAST:event_jTFBuscarLibroKeyTyped
 
     private void jTLibrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTLibrosMouseClicked
-        // TODO add your handling code here:
         jTFLibroSeleccionado.setText(selectedBookName());
         jTEjemplares.setModel(mostrarEjemplares(Integer.parseInt(selectedBookId())));
         tabla.resizeColumnWidth(jTEjemplares);
@@ -784,43 +909,131 @@ public class RealizarPrestamo extends javax.swing.JFrame {
     }//GEN-LAST:event_jTLibrosMouseClicked
 
     private void jTEjemplaresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTEjemplaresMouseClicked
-        // TODO add your handling code here:
         jTFEjemplar.setText(selectedBookNumber());
         jTFUbicacion.setText(selectedBooklocation());
         selectedNumberBookId();
     }//GEN-LAST:event_jTEjemplaresMouseClicked
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
-        // TODO add your handling code here:
-        prestamo.setIdLector(Integer.parseInt(selectedReaderId()));
-        prestamo.setIdEjemplar(Integer.parseInt(selectedNumberBookId()));
-        prestamo.setDevolucion("pendiente");
-        prestamo.setTipoPrestamo(ape.tipoPrestamo(jCBTipoPrestamo));
+        if (jTFLector.getText().trim().isEmpty()
+                || jTFLibroSeleccionado.getText().trim().isEmpty()
+                || jTFEjemplar.getText().trim().isEmpty()
+                || jTFUbicacion.getText().trim().isEmpty()
+                || jDCPrestamo.getDate().toString().trim().isEmpty()
+                || jDCFechaDevolucion.getDate().toString().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Hay uno o mas campos obligatorios vacios.\nPor favor llene todos los campos","Hay campos vacios",JOptionPane.WARNING_MESSAGE);
 
-        java.sql.Date sqlDate, sqlDate2;
-        java.util.Date date = jDCFechaDevolucion.getDate();
-        java.util.Date date2 = jDCPrestamo.getDate();
-        sqlDate = new java.sql.Date(date.getTime());
-        sqlDate2 = new java.sql.Date(date2.getTime());
-
-        prestamo.setFechaDevolucion(sqlDate);
-        prestamo.setFechaPrestamo(sqlDate2);
-
-        if (ape.agregarPrestamo(prestamo) == true) {
-//            JOptionPane.showMessageDialog(null, "Lector agregado exitosamente");
-            ape.actualizarEstadoEjemplar(prestamo.getIdEjemplar());
-            Main me = new Main();
-            me.setVisible(true);
-            this.dispose();
         } else {
+            prestamo.setIdLector(Integer.parseInt(selectedReaderId()));
+            prestamo.setIdEjemplar(Integer.parseInt(selectedNumberBookId()));
+            prestamo.setDevolucion("pendiente");
+            prestamo.setTipoPrestamo(ape.tipoPrestamo(jCBTipoPrestamo));
+
+            java.sql.Date sqlDate, sqlDate2;
+            java.util.Date date = jDCFechaDevolucion.getDate();
+            java.util.Date date2 = jDCPrestamo.getDate();
+            sqlDate = new java.sql.Date(date.getTime());
+            sqlDate2 = new java.sql.Date(date2.getTime());
+
+            prestamo.setFechaDevolucion(sqlDate);
+            prestamo.setFechaPrestamo(sqlDate2);
+
+            if (ape.agregarPrestamo(prestamo) == true) {
+//            JOptionPane.showMessageDialog(null, "Lector agregado exitosamente");
+                ape.actualizarEstadoEjemplar(prestamo.getIdEjemplar());
+                Principal me = new Principal();
+                me.setVisible(true);
+                this.dispose();
+            } else {
 //                JOptionPane.showMessageDialog(null, "Ha sucedido un error, por favor revise los datos ingresados");
+            }
         }
     }//GEN-LAST:event_jBGuardarActionPerformed
 
     private void jBLimpiarDatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimpiarDatoActionPerformed
-        // TODO add your handling code here:
         limpiar();
     }//GEN-LAST:event_jBLimpiarDatoActionPerformed
+
+    private void jLAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLAtrasMouseClicked
+        Principal principal = new Principal();
+        principal.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLAtrasMouseClicked
+
+    private void jMIDevolverLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIDevolverLibroActionPerformed
+        pres.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMIDevolverLibroActionPerformed
+
+    private void jMISalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMISalirActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jMISalirActionPerformed
+
+    private void jmiAgregarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAgregarLibroActionPerformed
+        AgregarLibro al = new AgregarLibro();
+        al.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jmiAgregarLibroActionPerformed
+
+    private void jmiAdministrarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAdministrarLibroActionPerformed
+        MostrarLibros ml = new MostrarLibros();
+        ml.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jmiAdministrarLibroActionPerformed
+
+    private void jmiAgregarCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAgregarCategoriasActionPerformed
+        AgregarCategoria ac = new AgregarCategoria();
+        ac.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jmiAgregarCategoriasActionPerformed
+
+    private void jmiAdministrarCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAdministrarCategoriasActionPerformed
+        MostrarCategoria mc = new MostrarCategoria();
+        mc.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jmiAdministrarCategoriasActionPerformed
+
+    private void jmiAgregarLectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAgregarLectorActionPerformed
+        AgregarLector al = new AgregarLector();
+        al.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jmiAgregarLectorActionPerformed
+
+    private void jmiAdministrarLectoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAdministrarLectoresActionPerformed
+        MostrarLectores ml = new MostrarLectores();
+        ml.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jmiAdministrarLectoresActionPerformed
+
+    private void jMIAgregarAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIAgregarAutorActionPerformed
+        AgregarAutor au = new AgregarAutor();
+        au.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMIAgregarAutorActionPerformed
+
+    private void jMIAdministrarAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIAdministrarAutorActionPerformed
+        MostrarAutor showWritter = new MostrarAutor();
+        showWritter.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMIAdministrarAutorActionPerformed
+
+    private void jMIAgregarEditorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIAgregarEditorialActionPerformed
+        AgregarEditorial addEd = new AgregarEditorial();
+        addEd.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMIAgregarEditorialActionPerformed
+
+    private void jMIAdministrarEditorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIAdministrarEditorialActionPerformed
+        MostrarEditorial showEd = new MostrarEditorial();
+        showEd.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMIAdministrarEditorialActionPerformed
+
+    private void jMIAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIAcercaDeActionPerformed
+        About about = new About();
+        about.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMIAcercaDeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -859,7 +1072,6 @@ public class RealizarPrestamo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBAtras;
     private javax.swing.JButton jBGuardar;
     private javax.swing.JButton jBLimpiarBusquedaNombre;
     private javax.swing.JButton jBLimpiarDato;
@@ -867,9 +1079,11 @@ public class RealizarPrestamo extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jCBTipoPrestamo;
     private com.toedter.calendar.JDateChooser jDCFechaDevolucion;
     private com.toedter.calendar.JDateChooser jDCPrestamo;
+    private javax.swing.JLabel jLAtras;
     private javax.swing.JLabel jLNombreLibro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -878,6 +1092,21 @@ public class RealizarPrestamo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenuItem jMIAcercaDe;
+    private javax.swing.JMenuItem jMIAdministrarAutor;
+    private javax.swing.JMenuItem jMIAdministrarEditorial;
+    private javax.swing.JMenuItem jMIAgregarAutor;
+    private javax.swing.JMenuItem jMIAgregarEditorial;
+    private javax.swing.JMenuItem jMIDevolverLibro;
+    private javax.swing.JMenuItem jMIRealizarPrestamo;
+    private javax.swing.JMenuItem jMISalir;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu jMiReportes;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -894,5 +1123,11 @@ public class RealizarPrestamo extends javax.swing.JFrame {
     private javax.swing.JTable jTLectores;
     private javax.swing.JTable jTLibros;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JMenuItem jmiAdministrarCategorias;
+    private javax.swing.JMenuItem jmiAdministrarLectores;
+    private javax.swing.JMenuItem jmiAdministrarLibro;
+    private javax.swing.JMenuItem jmiAgregarCategorias;
+    private javax.swing.JMenuItem jmiAgregarLector;
+    private javax.swing.JMenuItem jmiAgregarLibro;
     // End of variables declaration//GEN-END:variables
 }

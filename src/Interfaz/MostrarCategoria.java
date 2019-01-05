@@ -305,7 +305,7 @@ public class MostrarCategoria extends javax.swing.JFrame {
 
     private void jBAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAtrasActionPerformed
         // TODO add your handling code here:
-        Main ma = new Main();
+        Principal ma = new Principal();
         ma.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jBAtrasActionPerformed

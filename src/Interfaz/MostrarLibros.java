@@ -113,24 +113,6 @@ public class MostrarLibros extends javax.swing.JFrame {
         jBEjemplar = new javax.swing.JButton();
         jBAgregar = new javax.swing.JButton();
         jLAtras = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMIRealizarPrestamo = new javax.swing.JMenuItem();
-        jMILibrosPrestados = new javax.swing.JMenuItem();
-        jMISalir = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jmiAgregarLibro = new javax.swing.JMenuItem();
-        jmiAgregarCategorias = new javax.swing.JMenuItem();
-        jmiAdministrarLibro = new javax.swing.JMenuItem();
-        jmiAdministrarCategorias = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        jmiAgregarLector = new javax.swing.JMenuItem();
-        jmiAdministrarLectores = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
-        jMIAgregarAutor = new javax.swing.JMenuItem();
-        jMIAgregarEditorial = new javax.swing.JMenuItem();
-        jMIAdministrarAutor = new javax.swing.JMenuItem();
-        jMIAdministrarEditorial = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Panel de libros");
@@ -238,7 +220,7 @@ public class MostrarLibros extends javax.swing.JFrame {
                     .addComponent(jBAgregar)
                     .addComponent(jBEjemplar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE))
         );
 
         jLAtras.setForeground(new java.awt.Color(0, 0, 255));
@@ -249,136 +231,6 @@ public class MostrarLibros extends javax.swing.JFrame {
                 jLAtrasMouseClicked(evt);
             }
         });
-
-        jMenu1.setText("Archivo");
-
-        jMIRealizarPrestamo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
-        jMIRealizarPrestamo.setText("Prestar libro");
-        jMIRealizarPrestamo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMIRealizarPrestamoActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMIRealizarPrestamo);
-
-        jMILibrosPrestados.setText("Libros prestados");
-        jMILibrosPrestados.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMILibrosPrestadosActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMILibrosPrestados);
-
-        jMISalir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
-        jMISalir.setText("Salir");
-        jMISalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMISalirActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMISalir);
-
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Libros y categorías");
-
-        jmiAgregarLibro.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
-        jmiAgregarLibro.setText("Agregar libro");
-        jmiAgregarLibro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiAgregarLibroActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jmiAgregarLibro);
-
-        jmiAgregarCategorias.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
-        jmiAgregarCategorias.setText("Agregar categorias");
-        jmiAgregarCategorias.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiAgregarCategoriasActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jmiAgregarCategorias);
-
-        jmiAdministrarLibro.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.CTRL_MASK));
-        jmiAdministrarLibro.setText("Administrar libros");
-        jmiAdministrarLibro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiAdministrarLibroActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jmiAdministrarLibro);
-
-        jmiAdministrarCategorias.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
-        jmiAdministrarCategorias.setText("Administrar categorias");
-        jmiAdministrarCategorias.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiAdministrarCategoriasActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jmiAdministrarCategorias);
-
-        jMenuBar1.add(jMenu2);
-
-        jMenu3.setText("Lectores");
-
-        jmiAgregarLector.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
-        jmiAgregarLector.setText("Agregar lector");
-        jmiAgregarLector.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiAgregarLectorActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jmiAgregarLector);
-
-        jmiAdministrarLectores.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
-        jmiAdministrarLectores.setText("Administrar lectores");
-        jmiAdministrarLectores.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiAdministrarLectoresActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jmiAdministrarLectores);
-
-        jMenuBar1.add(jMenu3);
-
-        jMenu5.setText("Autores y editoriales");
-
-        jMIAgregarAutor.setText("Agregar Autor");
-        jMIAgregarAutor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMIAgregarAutorActionPerformed(evt);
-            }
-        });
-        jMenu5.add(jMIAgregarAutor);
-
-        jMIAgregarEditorial.setText("Agregar Editorial");
-        jMIAgregarEditorial.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMIAgregarEditorialActionPerformed(evt);
-            }
-        });
-        jMenu5.add(jMIAgregarEditorial);
-
-        jMIAdministrarAutor.setText("Administrar Autores");
-        jMIAdministrarAutor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMIAdministrarAutorActionPerformed(evt);
-            }
-        });
-        jMenu5.add(jMIAdministrarAutor);
-
-        jMIAdministrarEditorial.setText("Administrar Editorial");
-        jMIAdministrarEditorial.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMIAdministrarEditorialActionPerformed(evt);
-            }
-        });
-        jMenu5.add(jMIAdministrarEditorial);
-
-        jMenuBar1.add(jMenu5);
-
-        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -471,85 +323,8 @@ public class MostrarLibros extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jBEjemplarActionPerformed
 
-    private void jMIRealizarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIRealizarPrestamoActionPerformed
-        RealizarPrestamo re = new RealizarPrestamo();
-        re.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMIRealizarPrestamoActionPerformed
-
-    private void jMILibrosPrestadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMILibrosPrestadosActionPerformed
-        Prestamos pre = new Prestamos();
-        pre.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMILibrosPrestadosActionPerformed
-
-    private void jMISalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMISalirActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_jMISalirActionPerformed
-
-    private void jmiAgregarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAgregarLibroActionPerformed
-        // TODO add your handling code here:
-        AgregarLibro al = new AgregarLibro();
-        al.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jmiAgregarLibroActionPerformed
-
-    private void jmiAgregarCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAgregarCategoriasActionPerformed
-        AgregarCategoria ac = new AgregarCategoria();
-        ac.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jmiAgregarCategoriasActionPerformed
-
-    private void jmiAdministrarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAdministrarLibroActionPerformed
-        MostrarLibros ml = new MostrarLibros();
-        ml.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jmiAdministrarLibroActionPerformed
-
-    private void jmiAdministrarCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAdministrarCategoriasActionPerformed
-        MostrarCategoria mc = new MostrarCategoria();
-        mc.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jmiAdministrarCategoriasActionPerformed
-
-    private void jmiAgregarLectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAgregarLectorActionPerformed
-        AgregarLector al = new AgregarLector();
-        al.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jmiAgregarLectorActionPerformed
-
-    private void jmiAdministrarLectoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAdministrarLectoresActionPerformed
-        MostrarLectores ml = new MostrarLectores();
-        ml.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jmiAdministrarLectoresActionPerformed
-
-    private void jMIAgregarAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIAgregarAutorActionPerformed
-        AgregarAutor au = new AgregarAutor();
-        au.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMIAgregarAutorActionPerformed
-
-    private void jMIAgregarEditorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIAgregarEditorialActionPerformed
-        AgregarEditorial addEd = new AgregarEditorial();
-        addEd.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMIAgregarEditorialActionPerformed
-
-    private void jMIAdministrarAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIAdministrarAutorActionPerformed
-        MostrarAutor showWritter = new MostrarAutor();
-        showWritter.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMIAdministrarAutorActionPerformed
-
-    private void jMIAdministrarEditorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIAdministrarEditorialActionPerformed
-        MostrarEditorial showEd = new MostrarEditorial();
-        showEd.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMIAdministrarEditorialActionPerformed
-
     private void jLAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLAtrasMouseClicked
-        Main principal = new Main();
+        Principal principal = new Principal();
         principal.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLAtrasMouseClicked
@@ -599,27 +374,9 @@ public class MostrarLibros extends javax.swing.JFrame {
     private javax.swing.JLabel jLAtras;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JMenuItem jMIAdministrarAutor;
-    private javax.swing.JMenuItem jMIAdministrarEditorial;
-    private javax.swing.JMenuItem jMIAgregarAutor;
-    private javax.swing.JMenuItem jMIAgregarEditorial;
-    private javax.swing.JMenuItem jMILibrosPrestados;
-    private javax.swing.JMenuItem jMIRealizarPrestamo;
-    private javax.swing.JMenuItem jMISalir;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTFBuscarLibro;
     private javax.swing.JTable jTLibros;
-    private javax.swing.JMenuItem jmiAdministrarCategorias;
-    private javax.swing.JMenuItem jmiAdministrarLectores;
-    private javax.swing.JMenuItem jmiAdministrarLibro;
-    private javax.swing.JMenuItem jmiAgregarCategorias;
-    private javax.swing.JMenuItem jmiAgregarLector;
-    private javax.swing.JMenuItem jmiAgregarLibro;
     // End of variables declaration//GEN-END:variables
 }

@@ -296,7 +296,7 @@ public class MostrarEditorial extends javax.swing.JFrame {
 
     private void jBAtras1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAtras1ActionPerformed
         // TODO add your handling code here:
-        Main principal = new Main();
+        Principal principal = new Principal();
         principal.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jBAtras1ActionPerformed
