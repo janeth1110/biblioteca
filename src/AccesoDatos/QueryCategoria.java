@@ -32,11 +32,11 @@ public class QueryCategoria {
             rows_updated = stmt1.executeUpdate();
 
             if (rows_updated == 1) {
-                JOptionPane.showMessageDialog(null, "Categoria agregada correctamente");
+                //JOptionPane.showMessageDialog(null, "Categoria agregada correctamente");
                 con.desconectar();
                 return true;
             } else {
-                JOptionPane.showMessageDialog(null, "No se pudo agregar la categoria");
+                //JOptionPane.showMessageDialog(null, "No se pudo agregar la categoria");
                 con.desconectar();
                 return false;
             }

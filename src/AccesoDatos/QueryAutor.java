@@ -29,16 +29,16 @@ public class QueryAutor {
             rows_updated = stmt1.executeUpdate();
 
             if (rows_updated == 1) {
-                JOptionPane.showMessageDialog(null, "Autor agregado correctamente!");
+                //JOptionPane.showMessageDialog(null, "Autor agregado correctamente!");
                 con.desconectar();
                 return true;
             } else {
-                JOptionPane.showMessageDialog(null, "No se pudo agregar Autor");
+                //JOptionPane.showMessageDialog(null, "No se pudo agregar Autor");
                 con.desconectar();
                 return false;
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
+            JOptionPane.showMessageDialog(null,"Error detectado:\n"+ ex.getMessage(),"Ha ocurrido un error",JOptionPane.ERROR_MESSAGE);
             con.desconectar();
             return false;
         }

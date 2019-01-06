@@ -75,7 +75,7 @@ public class Login {
             con.desconectar();
 
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Ha ocurrido un error:\n" + e.getMessage(), "Ha ocurrido un error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Usuario o contraseña invalidos\n" + e.getMessage(), "Ha ocurrido un error", JOptionPane.ERROR_MESSAGE);
             con.desconectar();
         }
         return user;

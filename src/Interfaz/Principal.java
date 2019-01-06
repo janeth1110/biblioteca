@@ -4,7 +4,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 
 public class Principal extends javax.swing.JFrame {
-    
+
     RealizarPrestamo re = new RealizarPrestamo();
     Prestamos pres = new Prestamos();
     MostrarLibros mli = new MostrarLibros();
@@ -140,11 +140,11 @@ public class Principal extends javax.swing.JFrame {
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logo-grande.png"))); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Consolas", 3, 34)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 204));
+        jLabel6.setForeground(new java.awt.Color(0, 102, 204));
         jLabel6.setText("Biblioteca Centro Escolar");
 
         jLabel9.setFont(new java.awt.Font("Consolas", 3, 34)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 0, 204));
+        jLabel9.setForeground(new java.awt.Color(0, 102, 204));
         jLabel9.setText("Lic. Carmen Elena Calderon de Escalón");
 
         jMenu1.setText("Archivo");
@@ -461,7 +461,6 @@ public class Principal extends javax.swing.JFrame {
     private void jMIAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIAcercaDeActionPerformed
         About about = new About();
         about.setVisible(true);
-        this.dispose();
     }//GEN-LAST:event_jMIAcercaDeActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -480,7 +479,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jBLibrosActionPerformed
 
     private void jBLectoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLectoresActionPerformed
-         ml.setVisible(true);
+        ml.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jBLectoresActionPerformed
 

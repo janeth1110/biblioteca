@@ -1,29 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Interfaz;
 
-import Logica.AdministrarEjemplar;
-import Logica.AdministrarLibro;
-import Logica.Ejemplar;
-import Logica.Libro;
-import Logica.Tablas;
+import Logica.*;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author delmy
- */
 public class AgregarEjemplar extends javax.swing.JFrame {
 
     AdministrarEjemplar aej = new AdministrarEjemplar();
     AdministrarLibro ali = new AdministrarLibro();
     Ejemplar ejemplar = new Ejemplar();
+    AdministrarEjemplar adej = new AdministrarEjemplar();
     Libro libro = new Libro();
     Tablas tabla = new Tablas();
 
@@ -38,6 +28,17 @@ public class AgregarEjemplar extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
 
+    /**
+     * Coloca imagen de formulario
+     */
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().
+                getImage(ClassLoader.getSystemResource("imagenes/logo-icono.png"));
+        return retValue;
+
+    }
+
     public AgregarEjemplar(int i) {
         initComponents();
         setLocationRelativeTo(null);
@@ -47,11 +48,8 @@ public class AgregarEjemplar extends javax.swing.JFrame {
     }
 
     public DefaultTableModel mostrarEjemplares(int d) {
-        String estado="Prestado";
-        int estad;
         List<Ejemplar> ejemplares2 = new ArrayList<Ejemplar>();
         DefaultTableModel res = new DefaultTableModel();
-//        res.addColumn("Código");
         res.addColumn("Ejemplar");
         res.addColumn("Ubicacion");
         res.addColumn("Disponibilidad");
@@ -61,15 +59,13 @@ public class AgregarEjemplar extends javax.swing.JFrame {
         int i = 0;
         for (Ejemplar l : ejemplares2) {
             res.addRow(new Object[]{});
-//            res.setValueAt(l.getIdEjemplar(), i, 0);
             res.setValueAt(l.getNumEjemplar(), i, 0);
             res.setValueAt(l.getUbicacion(), i, 1);
-            if(l.getIdEstado()==2){
+            if (l.getIdEstado() == 2) {
                 res.setValueAt("Prestado", i, 2);
-            }
-            else{
+            } else {
                 res.setValueAt("Disponible", i, 2);
-            }       
+            }
             i++;
         }
         return res;
@@ -98,7 +94,6 @@ public class AgregarEjemplar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jBAtras = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLNombreLibro = new javax.swing.JLabel();
@@ -109,26 +104,44 @@ public class AgregarEjemplar extends javax.swing.JFrame {
         jTFEjemplar = new javax.swing.JTextField();
         jTFUbicacion = new javax.swing.JTextField();
         jBGuardar = new javax.swing.JButton();
+        jBCancelar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLNombreLibro1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTEjemplares = new javax.swing.JTable();
+        jLAtras = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMIRealizarPrestamo = new javax.swing.JMenuItem();
+        jMILibrosPrestados = new javax.swing.JMenuItem();
+        jMISalir = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jmiAgregarLibro = new javax.swing.JMenuItem();
+        jmiAdministrarLibro = new javax.swing.JMenuItem();
+        jmiAgregarCategorias = new javax.swing.JMenuItem();
+        jmiAdministrarCategorias = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jmiAgregarLector = new javax.swing.JMenuItem();
+        jmiAdministrarLectores = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
+        jMIAgregarAutor = new javax.swing.JMenuItem();
+        jMIAdministrarAutor = new javax.swing.JMenuItem();
+        jMIAgregarEditorial = new javax.swing.JMenuItem();
+        jMIAdministrarEditorial = new javax.swing.JMenuItem();
+        jMiReportes = new javax.swing.JMenu();
+        jMenu7 = new javax.swing.JMenu();
+        jMIAcercaDe = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jBAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
-        jBAtras.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBAtrasActionPerformed(evt);
-            }
-        });
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("Administrar ejemplares - Biblioteca escolar");
+        setIconImage(getIconImage());
 
         jLabel2.setBackground(new java.awt.Color(204, 255, 204));
-        jLabel2.setFont(new java.awt.Font("Maiandra GD", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(153, 0, 0));
+        jLabel2.setFont(new java.awt.Font("Consolas", 3, 30)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 102, 204));
         jLabel2.setText("Ejemplares por libro");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Agregar ejemplar para libro"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Agregar ejemplar para libro", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 102, 204))); // NOI18N
 
         jLNombreLibro.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLNombreLibro.setText("jLabel1");
@@ -148,32 +161,45 @@ public class AgregarEjemplar extends javax.swing.JFrame {
             }
         });
 
+        jBCancelar.setText("Cancelar");
+        jBCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBCancelarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTFEjemplar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTFUbicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(28, 28, 28)
+                                        .addComponent(jBGuardar)
+                                        .addGap(33, 33, 33)
+                                        .addComponent(jBCancelar))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTFEjemplar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTFUbicacion))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(18, 18, 18)
-                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
-                .addComponent(jBGuardar)
-                .addGap(17, 17, 17))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(139, 139, 139)
-                .addComponent(jLNombreLibro)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(139, 139, 139)
+                        .addComponent(jLNombreLibro)))
+                .addGap(71, 71, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,16 +212,19 @@ public class AgregarEjemplar extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTFUbicacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBGuardar))
+                    .addComponent(jTFUbicacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBGuardar)
+                    .addComponent(jBCancelar))
+                .addGap(42, 42, 42))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Ejemplares para el libro"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ejemplares para el libro", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 102, 204))); // NOI18N
 
         jLNombreLibro1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLNombreLibro1.setText("jLabel1");
@@ -231,65 +260,329 @@ public class AgregarEjemplar extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLNombreLibro1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        jLAtras.setForeground(new java.awt.Color(0, 0, 255));
+        jLAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
+        jLAtras.setText("Inicio");
+        jLAtras.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLAtrasMouseClicked(evt);
+            }
+        });
+
+        jMenu1.setText("Archivo");
+
+        jMIRealizarPrestamo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
+        jMIRealizarPrestamo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/PrestarLibro-icono.png"))); // NOI18N
+        jMIRealizarPrestamo.setText("Prestar libro");
+        jMIRealizarPrestamo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIRealizarPrestamoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMIRealizarPrestamo);
+
+        jMILibrosPrestados.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
+        jMILibrosPrestados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/LibrosPrestados-icono.png"))); // NOI18N
+        jMILibrosPrestados.setText("Libros prestados");
+        jMILibrosPrestados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMILibrosPrestadosActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMILibrosPrestados);
+
+        jMISalir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
+        jMISalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Salir.png"))); // NOI18N
+        jMISalir.setText("Salir");
+        jMISalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMISalirActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMISalir);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Libros y categorías");
+
+        jmiAgregarLibro.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
+        jmiAgregarLibro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/AgregarDocumento-icono.png"))); // NOI18N
+        jmiAgregarLibro.setText("Agregar libro");
+        jmiAgregarLibro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiAgregarLibroActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jmiAgregarLibro);
+
+        jmiAdministrarLibro.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.CTRL_MASK));
+        jmiAdministrarLibro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Libro-icono.png"))); // NOI18N
+        jmiAdministrarLibro.setText("Administrar libros");
+        jmiAdministrarLibro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiAdministrarLibroActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jmiAdministrarLibro);
+
+        jmiAgregarCategorias.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
+        jmiAgregarCategorias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/AgregarSimple-icono.png"))); // NOI18N
+        jmiAgregarCategorias.setText("Agregar categorias");
+        jmiAgregarCategorias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiAgregarCategoriasActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jmiAgregarCategorias);
+
+        jmiAdministrarCategorias.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
+        jmiAdministrarCategorias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/LibrosPrestados-icono.png"))); // NOI18N
+        jmiAdministrarCategorias.setText("Administrar categorias");
+        jmiAdministrarCategorias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiAdministrarCategoriasActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jmiAdministrarCategorias);
+
+        jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("Lectores");
+
+        jmiAgregarLector.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
+        jmiAgregarLector.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/AgregarPersona-icono.png"))); // NOI18N
+        jmiAgregarLector.setText("Agregar lector");
+        jmiAgregarLector.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiAgregarLectorActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jmiAgregarLector);
+
+        jmiAdministrarLectores.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_MASK));
+        jmiAdministrarLectores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Lector-icono.png"))); // NOI18N
+        jmiAdministrarLectores.setText("Administrar lectores");
+        jmiAdministrarLectores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiAdministrarLectoresActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jmiAdministrarLectores);
+
+        jMenuBar1.add(jMenu3);
+
+        jMenu5.setText("Autores y editoriales");
+
+        jMIAgregarAutor.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
+        jMIAgregarAutor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/AgregarPersona-icono.png"))); // NOI18N
+        jMIAgregarAutor.setText("Agregar Autor");
+        jMIAgregarAutor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIAgregarAutorActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMIAgregarAutor);
+
+        jMIAdministrarAutor.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_MASK));
+        jMIAdministrarAutor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/persona-icono.png"))); // NOI18N
+        jMIAdministrarAutor.setText("Administrar Autores");
+        jMIAdministrarAutor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIAdministrarAutorActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMIAdministrarAutor);
+
+        jMIAgregarEditorial.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
+        jMIAgregarEditorial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/AgregarSimple-icono.png"))); // NOI18N
+        jMIAgregarEditorial.setText("Agregar Editorial");
+        jMIAgregarEditorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIAgregarEditorialActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMIAgregarEditorial);
+
+        jMIAdministrarEditorial.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.CTRL_MASK));
+        jMIAdministrarEditorial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Editorial-icono.png"))); // NOI18N
+        jMIAdministrarEditorial.setText("Administrar Editorial");
+        jMIAdministrarEditorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIAdministrarEditorialActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMIAdministrarEditorial);
+
+        jMenuBar1.add(jMenu5);
+
+        jMiReportes.setText("Reportes");
+        jMenuBar1.add(jMiReportes);
+
+        jMenu7.setText("Ayuda");
+
+        jMIAcercaDe.setText("Acerca de");
+        jMIAcercaDe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIAcercaDeActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jMIAcercaDe);
+
+        jMenuBar1.add(jMenu7);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jBAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(222, 222, 222)
-                .addComponent(jLabel2)
-                .addGap(0, 212, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLAtras)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(179, 179, 179)
+                        .addComponent(jLabel2)))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jLabel2)
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jBAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLAtras)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jBAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAtrasActionPerformed
-        // TODO add your handling code here:
+    private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
+        if (jTFEjemplar.getText().trim().isEmpty() || jTFUbicacion.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Verifique que no hayan campos vacios", "Todos los campos son obligatorios", JOptionPane.WARNING_MESSAGE);
+        } else {
+            ejemplar.setIdLibro(idLibro);
+            ejemplar.setNumEjemplar(Integer.parseInt(jTFEjemplar.getText()));
+            ejemplar.setUbicacion(jTFUbicacion.getText());
+            ejemplar.setIdEstado(1);
+            if (adej.agregarEjemplar(ejemplar)) {
+                JOptionPane.showMessageDialog(null, "Ejemplar agregado exitosamente!", "En horabuena!", JOptionPane.INFORMATION_MESSAGE);
+                limpiar();
+            } else {
+                JOptionPane.showMessageDialog(null, "Ha ocurrido un problema, vuelva a intentarlo mas tarde", "Ha ocurrido un error", JOptionPane.ERROR_MESSAGE);
+            }
+            jTEjemplares.setModel(mostrarEjemplares(idLibro));
+            tabla.resizeColumnWidth(jTEjemplares);
+        }
+    }//GEN-LAST:event_jBGuardarActionPerformed
+
+    private void jLAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLAtrasMouseClicked
+        Principal principal = new Principal();
+        principal.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLAtrasMouseClicked
+
+    private void jMIRealizarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIRealizarPrestamoActionPerformed
+        RealizarPrestamo re = new RealizarPrestamo();
+        re.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMIRealizarPrestamoActionPerformed
+
+    private void jMILibrosPrestadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMILibrosPrestadosActionPerformed
+        Prestamos pre = new Prestamos();
+        pre.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMILibrosPrestadosActionPerformed
+
+    private void jMISalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMISalirActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jMISalirActionPerformed
+
+    private void jmiAgregarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAgregarLibroActionPerformed
+        AgregarLibro al = new AgregarLibro();
+        al.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jmiAgregarLibroActionPerformed
+
+    private void jmiAdministrarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAdministrarLibroActionPerformed
         MostrarLibros ml = new MostrarLibros();
         ml.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jBAtrasActionPerformed
+    }//GEN-LAST:event_jmiAdministrarLibroActionPerformed
 
-    private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
-        // TODO add your handling code here:
-        AdministrarEjemplar adej = new AdministrarEjemplar();
-        Ejemplar ejem = new Ejemplar();
-        ejem.setIdLibro(idLibro);
-        ejem.setNumEjemplar(Integer.parseInt(jTFEjemplar.getText()));
-        ejem.setUbicacion(jTFUbicacion.getText());
-        ejem.setIdEstado(1);
-        if (adej.agregarEjemplar(ejem)) {
-            limpiar();
-        } else {
-            JOptionPane.showMessageDialog(null, "Ha sucedido un error, por favor revise los datos ingresados");
-        }
-        jTEjemplares.setModel(mostrarEjemplares(idLibro));
-        tabla.resizeColumnWidth(jTEjemplares);
-    }//GEN-LAST:event_jBGuardarActionPerformed
+    private void jmiAgregarCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAgregarCategoriasActionPerformed
+        AgregarCategoria ac = new AgregarCategoria();
+        ac.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jmiAgregarCategoriasActionPerformed
+
+    private void jmiAdministrarCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAdministrarCategoriasActionPerformed
+        MostrarCategoria mc = new MostrarCategoria();
+        mc.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jmiAdministrarCategoriasActionPerformed
+
+    private void jmiAgregarLectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAgregarLectorActionPerformed
+        AgregarLector al = new AgregarLector();
+        al.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jmiAgregarLectorActionPerformed
+
+    private void jmiAdministrarLectoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAdministrarLectoresActionPerformed
+        MostrarLectores ml = new MostrarLectores();
+        ml.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jmiAdministrarLectoresActionPerformed
+
+    private void jMIAgregarAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIAgregarAutorActionPerformed
+        AgregarAutor au = new AgregarAutor();
+        au.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMIAgregarAutorActionPerformed
+
+    private void jMIAdministrarAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIAdministrarAutorActionPerformed
+        MostrarAutor showWritter = new MostrarAutor();
+        showWritter.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMIAdministrarAutorActionPerformed
+
+    private void jMIAgregarEditorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIAgregarEditorialActionPerformed
+        AgregarEditorial addEd = new AgregarEditorial();
+        addEd.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMIAgregarEditorialActionPerformed
+
+    private void jMIAdministrarEditorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIAdministrarEditorialActionPerformed
+        MostrarEditorial showEd = new MostrarEditorial();
+        showEd.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMIAdministrarEditorialActionPerformed
+
+    private void jMIAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIAcercaDeActionPerformed
+        About about = new About();
+        about.setVisible(true);
+    }//GEN-LAST:event_jMIAcercaDeActionPerformed
+
+    private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
+        Principal principal = new Principal();
+        principal.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jBCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -328,20 +621,42 @@ public class AgregarEjemplar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBAtras;
+    private javax.swing.JButton jBCancelar;
     private javax.swing.JButton jBGuardar;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLAtras;
     private javax.swing.JLabel jLNombreLibro;
     private javax.swing.JLabel jLNombreLibro1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JMenuItem jMIAcercaDe;
+    private javax.swing.JMenuItem jMIAdministrarAutor;
+    private javax.swing.JMenuItem jMIAdministrarEditorial;
+    private javax.swing.JMenuItem jMIAgregarAutor;
+    private javax.swing.JMenuItem jMIAgregarEditorial;
+    private javax.swing.JMenuItem jMILibrosPrestados;
+    private javax.swing.JMenuItem jMIRealizarPrestamo;
+    private javax.swing.JMenuItem jMISalir;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu jMiReportes;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTEjemplares;
     private javax.swing.JTextField jTFEjemplar;
     private javax.swing.JTextField jTFUbicacion;
+    private javax.swing.JMenuItem jmiAdministrarCategorias;
+    private javax.swing.JMenuItem jmiAdministrarLectores;
+    private javax.swing.JMenuItem jmiAdministrarLibro;
+    private javax.swing.JMenuItem jmiAgregarCategorias;
+    private javax.swing.JMenuItem jmiAgregarLector;
+    private javax.swing.JMenuItem jmiAgregarLibro;
     // End of variables declaration//GEN-END:variables
 }

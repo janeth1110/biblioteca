@@ -38,16 +38,16 @@ public class QueryLector {
             rows_updated = stmt1.executeUpdate();
 
             if (rows_updated == 1) {
-                JOptionPane.showMessageDialog(null, "Lector agregado exitosamente");
+//                JOptionPane.showMessageDialog(null, "Lector agregado exitosamente");
                 con.desconectar();
                 return true;
             } else {
-                JOptionPane.showMessageDialog(null, "No se pudo agregar lector, por favor verifique los datos");
+//                JOptionPane.showMessageDialog(null, "No se pudo agregar lector, por favor verifique los datos");
                 con.desconectar();
                 return false;
             }
         } catch (HeadlessException | SQLException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
+            JOptionPane.showMessageDialog(null,"Error detectado:\n"+ e.getMessage(),"Ha ocurrido un error",JOptionPane.ERROR_MESSAGE);
             return false;
         }
     }

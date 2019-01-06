@@ -30,11 +30,11 @@ public class QueryEditorial {
             rows_updated = stmt1.executeUpdate();
 
             if (rows_updated == 1) {
-                JOptionPane.showMessageDialog(null, "Editorial agregada correctamente!");
+//                JOptionPane.showMessageDialog(null, "Editorial agregada correctamente!");
                 con.desconectar();
                 return true;
             } else {
-                JOptionPane.showMessageDialog(null, "No se pudo agregar editorial");
+//                JOptionPane.showMessageDialog(null, "No se pudo agregar editorial");
                 con.desconectar();
                 return false;
             }

@@ -119,8 +119,8 @@ public class MostrarLibros extends javax.swing.JFrame {
         setResizable(false);
 
         jLabel6.setBackground(new java.awt.Color(204, 255, 204));
-        jLabel6.setFont(new java.awt.Font("Maiandra GD", 1, 36)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(153, 0, 0));
+        jLabel6.setFont(new java.awt.Font("Consolas", 3, 36)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 204));
         jLabel6.setText("Libros");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Libros disponibles"));
@@ -246,7 +246,7 @@ public class MostrarLibros extends javax.swing.JFrame {
                         .addComponent(jLAtras)
                         .addGap(436, 436, 436)
                         .addComponent(jLabel6)
-                        .addContainerGap(503, Short.MAX_VALUE))))
+                        .addContainerGap(488, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
