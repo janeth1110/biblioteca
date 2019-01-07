@@ -23,14 +23,18 @@ public class LogIn extends javax.swing.JFrame {
     }
 
     public void comprobarDatos(int id, String pwd) {
-        user = login.obtenerUsuario(id);
-        if (pwd == null ? user.getPass() == null : pwd.equals(user.getPass())) {
-            JOptionPane.showMessageDialog(null, "Bienvenid@ " + user.getNames() + "!");
-            Principal main = new Principal();
-            main.setVisible(true);
-            this.dispose();
-        } else {
-            JOptionPane.showMessageDialog(null, "Contraseña incorrecta, vuelva a intentarlo", "No se pudo iniciar sesion", JOptionPane.WARNING_MESSAGE);
+        try {
+            user = login.obtenerUsuario(id);
+            if (pwd == null ? user.getPass() == null : pwd.equals(user.getPass())) {
+                JOptionPane.showMessageDialog(null, "Bienvenid@ " + user.getNames() + "!");
+                Principal main = new Principal();
+                main.setVisible(true);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Contraseña incorrecta, vuelva a intentarlo", "No se pudo iniciar sesion", JOptionPane.WARNING_MESSAGE);
+            }
+        } catch (Exception e) {
+
         }
     }
 
@@ -54,33 +58,40 @@ public class LogIn extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jLUser = new javax.swing.JLabel();
         jTFUsuario = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        jLPwd = new javax.swing.JLabel();
         jBIniciar = new javax.swing.JButton();
         jBCancelar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jPFContra = new javax.swing.JPasswordField();
         label1 = new java.awt.Label();
+        jLObligatorios = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Inicio de sesion - Biblioteca");
+        setTitle("Inicio de sesion - Biblioteca Escolar");
         setIconImage(getIconImage());
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Consolas", 0, 22)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 153));
         jLabel1.setText("Inicio de sesión");
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/persona-icono.png"))); // NOI18N
-        jLabel2.setText("Usuario");
+        jLUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/persona-icono.png"))); // NOI18N
+        jLUser.setText("Usuario");
 
         jTFUsuario.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         jTFUsuario.setForeground(new java.awt.Color(51, 51, 51));
         jTFUsuario.setText("1234");
-        jTFUsuario.setToolTipText("Ingrese su numero de usuario");
+        jTFUsuario.setToolTipText("Ingrese su numero de DUI");
+        jTFUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFUsuarioKeyTyped(evt);
+            }
+        });
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/password-icono.png"))); // NOI18N
-        jLabel3.setText("Clave: ");
+        jLPwd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/password-icono.png"))); // NOI18N
+        jLPwd.setText("Clave  ");
 
         jBIniciar.setText("Ingresar");
         jBIniciar.addActionListener(new java.awt.event.ActionListener() {
@@ -99,12 +110,14 @@ public class LogIn extends javax.swing.JFrame {
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/login.png"))); // NOI18N
 
         jPFContra.setForeground(new java.awt.Color(51, 51, 51));
-        jPFContra.setToolTipText("Contraseña");
+        jPFContra.setToolTipText("Ingrese su contraseña");
 
         label1.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
         label1.setForeground(new java.awt.Color(0, 0, 204));
         label1.setName(""); // NOI18N
         label1.setText("Olvido su contraseña?");
+
+        jLObligatorios.setForeground(new java.awt.Color(255, 0, 0));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -130,13 +143,16 @@ public class LogIn extends javax.swing.JFrame {
                             .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3))
+                                    .addComponent(jLUser)
+                                    .addComponent(jLPwd))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jTFUsuario)
                                     .addComponent(jPFContra, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(77, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLObligatorios, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,18 +164,20 @@ public class LogIn extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTFUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(jLUser))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPFContra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(jLPwd))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBIniciar)
                     .addComponent(jBCancelar))
-                .addGap(55, 55, 55))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLObligatorios, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -168,15 +186,27 @@ public class LogIn extends javax.swing.JFrame {
     private void jBIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBIniciarActionPerformed
         // TODO add your handling code here:
         if (jTFUsuario.getText().trim().isEmpty() || jPFContra.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Uno o dos campos estan vacíos","Error de inicio de sesion",JOptionPane.WARNING_MESSAGE);
+            jLObligatorios.setText("* Son campos obligatorios");
+            jLUser.setText("Usuario *");
+            jLPwd.setText("Clave *");
+            JOptionPane.showMessageDialog(null, "Debe ingresar todos los datos obligatorios", "Error de inicio de sesion", JOptionPane.WARNING_MESSAGE);
         } else {
             comprobarDatos(Integer.parseInt(jTFUsuario.getText()), jPFContra.getText());
-        }   
+        }
     }//GEN-LAST:event_jBIniciarActionPerformed
 
     private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jBCancelarActionPerformed
+
+    private void jTFUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFUsuarioKeyTyped
+        // TODO add your handling code here:
+        char caracter = evt.getKeyChar();
+        if ((!Character.isDigit(caracter))
+                || jTFUsuario.getText().length() >= 2) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTFUsuarioKeyTyped
 
     /**
      * @param args the command line arguments
@@ -216,9 +246,10 @@ public class LogIn extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBCancelar;
     private javax.swing.JButton jBIniciar;
+    private javax.swing.JLabel jLObligatorios;
+    private javax.swing.JLabel jLPwd;
+    private javax.swing.JLabel jLUser;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPasswordField jPFContra;
     private javax.swing.JTextField jTFUsuario;

@@ -1,20 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Interfaz;
 
 import AccesoDatos.conexion;
 import Logica.*;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author delmy
- */
 public class AgregarLibro extends javax.swing.JFrame {
 
     conexion con = new conexion();
@@ -22,6 +15,7 @@ public class AgregarLibro extends javax.swing.JFrame {
     AdministrarIdioma ai = new AdministrarIdioma();
     AdministrarAutor aa = new AdministrarAutor();
     AdministrarEditorial ac = new AdministrarEditorial();
+    Libro li = new Libro();
 
     /**
      * Creates new form AgregarLibro
@@ -33,6 +27,16 @@ public class AgregarLibro extends javax.swing.JFrame {
         llenarIdiomas();
         llenarAutores();
         llenarEditoriales();
+    }
+    
+    /**
+     * Coloca imagen de formulario
+     */
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().
+                getImage(ClassLoader.getSystemResource("imagenes/logo-icono.png"));
+        return retValue;
     }
 
     public void limpiar() {
@@ -132,7 +136,7 @@ public class AgregarLibro extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jtfISBN = new javax.swing.JTextField();
-        jYearChooser1 = new com.toedter.calendar.JYearChooser();
+        jYCAñoLibro = new com.toedter.calendar.JYearChooser();
         jtfEdicion = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtaDesc = new javax.swing.JTextArea();
@@ -143,6 +147,7 @@ public class AgregarLibro extends javax.swing.JFrame {
         jCBEditorial = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jBCancelar = new javax.swing.JButton();
+        jLObligatorios = new javax.swing.JLabel();
         jLAtras = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -168,6 +173,8 @@ public class AgregarLibro extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Agregar nuevo libro - Biblioteca Escolar");
+        setIconImage(getIconImage());
+        setResizable(false);
 
         jLabel6.setBackground(new java.awt.Color(204, 255, 204));
         jLabel6.setFont(new java.awt.Font("Consolas", 3, 30)); // NOI18N
@@ -176,23 +183,37 @@ public class AgregarLibro extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Agregar libro", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 102, 204))); // NOI18N
 
-        jLabel1.setText("Título:");
+        jLabel1.setText("Título *");
 
-        jLabel3.setText("Autor:");
+        jLabel3.setText("Autor *");
 
-        jLabel4.setText("Editorial:");
+        jLabel4.setText("Editorial *");
 
-        jLabel5.setText("Año:");
+        jLabel5.setText("Año * ");
 
-        jLabel7.setText("Edición:");
+        jLabel7.setText("Edición *");
 
-        jLabel8.setText("Categoría: ");
+        jLabel8.setText("Categoría *");
 
-        jLabel9.setText("Idioma:");
+        jLabel9.setText("Idioma *");
 
-        jLabel10.setText("ISBN:");
+        jLabel10.setText("ISBN *");
 
         jLabel11.setText("Descripción:");
+
+        jtfISBN.setToolTipText("Digite el ISBN sin guiones. Maximo 15 numeros");
+        jtfISBN.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfISBNKeyTyped(evt);
+            }
+        });
+
+        jtfEdicion.setToolTipText("Digite solo numeros");
+        jtfEdicion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfEdicionKeyTyped(evt);
+            }
+        });
 
         jtaDesc.setColumns(20);
         jtaDesc.setRows(5);
@@ -208,63 +229,72 @@ public class AgregarLibro extends javax.swing.JFrame {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/libro-grande.png"))); // NOI18N
 
         jBCancelar.setText("Cancelar");
+        jBCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBCancelarActionPerformed(evt);
+            }
+        });
+
+        jLObligatorios.setForeground(new java.awt.Color(255, 0, 0));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel11)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jScrollPane1))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel9)
-                            .addGap(18, 18, 18)
-                            .addComponent(jCBIdiomas, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel7)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jtfEdicion, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel11)
+                                .addGap(16, 16, 16))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel7))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1)
+                            .addComponent(jtfEdicion, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jCBIdiomas, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(31, 31, 31)
                                 .addComponent(jLabel10)
-                                .addComponent(jLabel5))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jtfISBN)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jYearChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(0, 0, Short.MAX_VALUE))))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel4)
-                            .addGap(18, 18, 18)
-                            .addComponent(jCBEditorial, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel3)
-                            .addGap(18, 18, 18)
-                            .addComponent(jCBAutores, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel8)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jCBCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGap(11, 11, 11))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jYCAñoLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtfISBN, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jtfTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel8))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jCBAutores, 0, 281, Short.MAX_VALUE)
+                            .addComponent(jCBCategoria, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jtfTitulo, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jCBEditorial, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(39, 39, 39)
                 .addComponent(jLabel2)
-                .addContainerGap())
+                .addGap(28, 28, 28))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(131, 131, 131)
                 .addComponent(jbGuardar)
                 .addGap(18, 18, 18)
                 .addComponent(jBCancelar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLObligatorios))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -292,9 +322,9 @@ public class AgregarLibro extends javax.swing.JFrame {
                             .addComponent(jLabel10)
                             .addComponent(jtfISBN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jYearChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jYCAñoLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
@@ -315,7 +345,8 @@ public class AgregarLibro extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbGuardar)
                     .addComponent(jBCancelar))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLObligatorios))
         );
 
         jLAtras.setForeground(new java.awt.Color(0, 0, 255));
@@ -500,48 +531,53 @@ public class AgregarLibro extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(146, 146, 146)
                         .addComponent(jLabel6)))
-                .addGap(30, 32, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLAtras)
-                .addContainerGap())
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
-        // TODO add your handling code here:
-        String temp = jCBCategoria.getSelectedItem().toString();
-        String temp2 = jCBIdiomas.getSelectedItem().toString();
-        String temp3 = jCBAutores.getSelectedItem().toString();
-        String temp4 = jCBEditorial.getSelectedItem().toString();
+        if (jtfTitulo.getText().trim().isEmpty()
+                || jCBCategoria.getSelectedIndex() == -1
+                || jCBAutores.getSelectedIndex() == -1
+                || jCBEditorial.getSelectedIndex() == -1
+                || jtfISBN.getText().trim().isEmpty()
+                || jYCAñoLibro.toString().trim().isEmpty()
+                || jtfEdicion.getText().trim().isEmpty()
+                || jCBIdiomas.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(null, "Verifique que los campos obligatorios no esten vacios", "Todos los campos son obligatorios", JOptionPane.WARNING_MESSAGE);
+            jLObligatorios.setText("* Son campos obligatorios");
 
-        AdministrarLibro al = new AdministrarLibro();
-        Libro li = new Libro();
-        li.setTitulo(jtfTitulo.getText());
-        li.setIdCategoria(obtenerCategoriaSeleccionada(temp));
-        li.setEdicion(Integer.parseInt(jtfEdicion.getText()));
-
-        li.setIdEditorial(obtenerEditorialSeleccionada(temp4));
-
-        li.setIdAutor(obtenerAutorSeleccionado(temp3));
-        li.setAño(jYearChooser1.getYear());
-        li.setDescripcion(jtaDesc.getText());
-        li.setISBN(jtfISBN.getText());
-        li.setIdioma(obtenerIdiomaSeleccionado(temp2));
-
-        if (al.agregarLibro(li)) {
-            limpiar();
         } else {
-            JOptionPane.showMessageDialog(null, "Ha sucedido un error, por favor revise los datos ingresados");
+            AdministrarLibro al = new AdministrarLibro();
+            li.setTitulo(jtfTitulo.getText());
+            li.setIdCategoria(obtenerCategoriaSeleccionada(jCBCategoria.getSelectedItem().toString()));
+            li.setEdicion(Integer.parseInt(jtfEdicion.getText()));
+            li.setIdEditorial(obtenerEditorialSeleccionada(jCBEditorial.getSelectedItem().toString()));
+            li.setIdAutor(obtenerAutorSeleccionado(jCBAutores.getSelectedItem().toString()));
+            li.setAño(jYCAñoLibro.getYear());
+            li.setDescripcion(jtaDesc.getText());
+            li.setISBN(jtfISBN.getText());
+            li.setIdioma(obtenerIdiomaSeleccionado(jCBIdiomas.getSelectedItem().toString()));
+
+            if (al.agregarLibro(li)) {
+                JOptionPane.showMessageDialog(null, "Libro agregado exitosamente!", "En horabuena!", JOptionPane.INFORMATION_MESSAGE);
+                limpiar();
+            } else {
+                JOptionPane.showMessageDialog(null, "Ha ocurrido un problema, vuelva a intentarlo mas tarde", "Ha ocurrido un error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_jbGuardarActionPerformed
 
@@ -626,6 +662,28 @@ public class AgregarLibro extends javax.swing.JFrame {
         about.setVisible(true);
     }//GEN-LAST:event_jMIAcercaDeActionPerformed
 
+    private void jtfISBNKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfISBNKeyTyped
+        char caracter = evt.getKeyChar();
+        if ((!Character.isDigit(caracter))
+                || jtfISBN.getText().length() >= 15) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfISBNKeyTyped
+
+    private void jtfEdicionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfEdicionKeyTyped
+        char caracter = evt.getKeyChar();
+        if ((!Character.isDigit(caracter))
+                || jtfEdicion.getText().length() >= 2) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfEdicionKeyTyped
+
+    private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
+        Principal principal = new Principal();
+        principal.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jBCancelarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -668,6 +726,7 @@ public class AgregarLibro extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jCBEditorial;
     private javax.swing.JComboBox<String> jCBIdiomas;
     private javax.swing.JLabel jLAtras;
+    private javax.swing.JLabel jLObligatorios;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -696,7 +755,7 @@ public class AgregarLibro extends javax.swing.JFrame {
     private javax.swing.JMenu jMiReportes;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private com.toedter.calendar.JYearChooser jYearChooser1;
+    private com.toedter.calendar.JYearChooser jYCAñoLibro;
     private javax.swing.JButton jbGuardar;
     private javax.swing.JMenuItem jmiAdministrarCategorias;
     private javax.swing.JMenuItem jmiAdministrarLectores;

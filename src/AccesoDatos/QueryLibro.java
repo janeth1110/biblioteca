@@ -37,14 +37,13 @@ public class QueryLibro {
             stmt1.setInt(8, edicion);
             stmt1.setInt(9, idioma);
             rows_updated = stmt1.executeUpdate();
-            JOptionPane.showMessageDialog(null, rows_updated);
 
             if (rows_updated == 1) {
-                JOptionPane.showMessageDialog(null, "Libro agregado exitosamente");
+                //JOptionPane.showMessageDialog(null, "Libro agregado exitosamente");
                 con.desconectar();
                 return true;
             } else {
-                JOptionPane.showMessageDialog(null, "No se pudo agregar libro, por favor verifique los datos");
+                //JOptionPane.showMessageDialog(null, "No se pudo agregar libro, por favor verifique los datos");
                 con.desconectar();
                 return false;
             }

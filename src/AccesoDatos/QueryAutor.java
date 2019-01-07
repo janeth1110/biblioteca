@@ -104,7 +104,7 @@ public class QueryAutor {
 
             rows_updated = stmt1.executeUpdate();
             if (rows_updated == 1) {
-                JOptionPane.showMessageDialog(null, "Actualizacion realizada!");
+                //JOptionPane.showMessageDialog(null, "Actualizacion realizada!");
                 con.desconectar();
                 return true;
             } else {
@@ -112,7 +112,7 @@ public class QueryAutor {
                 return false;
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error " + e.getMessage());
+//            JOptionPane.showMessageDialog(null, "Error " + e.getMessage());
             return false;
         }
     }

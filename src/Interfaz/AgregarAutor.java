@@ -354,7 +354,8 @@ public class AgregarAutor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
-        if (jTFApellido.getText().trim().isEmpty()
+        try {
+            if (jTFApellido.getText().trim().isEmpty()
                 || jTFApellido.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Verifique que no hayan campos vacios", "Todos los campos son obligatorios",JOptionPane.WARNING_MESSAGE);
         } else {
@@ -366,6 +367,9 @@ public class AgregarAutor extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "Ha ocurrido un problema, vuelva a intentarlo mas tarde", "Ha ocurrido un error", JOptionPane.ERROR_MESSAGE);
             }
+        }
+        } catch (Exception e) {
+            
         }
     }//GEN-LAST:event_jBAgregarActionPerformed
 

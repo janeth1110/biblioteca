@@ -34,7 +34,7 @@ public class QueryEjemplar {
             rows_updated = stmt1.executeUpdate();
 
             if (rows_updated == 1) {
-                JOptionPane.showMessageDialog(null, "Ejemplar agregado exitosamente");
+                //JOptionPane.showMessageDialog(null, "Ejemplar agregado exitosamente");
                 con.desconectar();
                 return true;
             } else {

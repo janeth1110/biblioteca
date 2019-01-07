@@ -73,12 +73,13 @@ public class Login {
             user.setRol(resultado.getString("cargo"));
 
             con.desconectar();
-
+            return user;
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Usuario o contraseña invalidos\n" + e.getMessage(), "Ha ocurrido un error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Usuario no encontrado\nPor favor ingrese un ID válido", "Ha ocurrido un error", JOptionPane.ERROR_MESSAGE);
             con.desconectar();
+            return null;
         }
-        return user;
+
     }
 
     /**
@@ -143,10 +144,12 @@ public class Login {
         con.desconectar();
         return listaUsuarios;
     }
+
     /**
      * Metodo para eliminar usuarios
+     *
      * @param id
-     * @return 
+     * @return
      */
     public Boolean eliminarUsuario(int id) {
         try {

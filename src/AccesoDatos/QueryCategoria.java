@@ -105,7 +105,7 @@ public class QueryCategoria {
             rows_updated = stmt1.executeUpdate();
 
             if (rows_updated == 1) {
-                JOptionPane.showMessageDialog(null, "Actualizacion realizada");
+//                JOptionPane.showMessageDialog(null, "Actualizacion realizada");
                 con.desconectar();
                 return true;
             } else {
