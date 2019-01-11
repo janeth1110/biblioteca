@@ -38,7 +38,7 @@ public class Tablas {
         id = String.valueOf(tablaModelo.getValueAt(tabla.getSelectedRow(), 0));
 
         if (id.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Debe seleccionar un dato");
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un dato","No seleccionó un dato", JOptionPane.ERROR_MESSAGE);
             return null;
         } else {
             return id;

@@ -80,11 +80,12 @@ public class AgregarEditorial extends javax.swing.JFrame {
         jMenu7 = new javax.swing.JMenu();
         jMIAcercaDe = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Agregar Editorial - Biblioteca escolar");
         setAutoRequestFocus(false);
         setBackground(new java.awt.Color(204, 255, 204));
         setIconImage(getIconImage());
+        setResizable(false);
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editorial.png"))); // NOI18N
 

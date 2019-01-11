@@ -70,6 +70,7 @@ public class AgregarCategoria extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Agregar Categoría - Biblioteca escolar");
         setIconImage(getIconImage());
+        setResizable(false);
 
         jLabel1.setBackground(new java.awt.Color(204, 255, 204));
         jLabel1.setFont(new java.awt.Font("Consolas", 3, 30)); // NOI18N

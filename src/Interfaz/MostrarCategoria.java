@@ -1,21 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Interfaz;
 
 import Logica.*;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
-/**
- *
- * @author delmy
- */
 public class MostrarCategoria extends javax.swing.JFrame {
 
     AdministrarCategoria ae = new AdministrarCategoria();
@@ -29,6 +21,16 @@ public class MostrarCategoria extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         jTCategoria.setModel(mostrarCategoria());
         tabla.resizeColumnWidth(jTCategoria);
+    }
+
+    /**
+     * Coloca imagen de formulario
+     */
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().
+                getImage(ClassLoader.getSystemResource("imagenes/logo-icono.png"));
+        return retValue;
     }
 
     public DefaultTableModel mostrarCategoria() {
@@ -50,23 +52,7 @@ public class MostrarCategoria extends javax.swing.JFrame {
         return res;
     }
 
-    public String selected() {
-        String id = null;
-        TableModel tablaModelo;
-        tablaModelo = (TableModel) jTCategoria.getModel();
-        id = String.valueOf(tablaModelo.getValueAt(jTCategoria.getSelectedRow(), 0));
-
-        if (id.isEmpty()) {
-//            JOptionPane.showMessageDialog(null, id);
-            return "Debe seleccionar un dato";
-        } else {
-//            JOptionPane.showMessageDialog(null, "Debe seleccionar una Editorial");
-            return id;
-
-        }
-    }
-    
-   public DefaultTableModel buscarCategoria(String n) {
+    public DefaultTableModel buscarCategoria(String n) {
         List<Categoria> categorias2 = new ArrayList<Categoria>();
         DefaultTableModel res = new DefaultTableModel();
         res.addColumn("Código");
@@ -84,13 +70,6 @@ public class MostrarCategoria extends javax.swing.JFrame {
         return res;
     }
 
-    public boolean isCellEditable(int row, int column) {
-        if (column == 0) {
-            return false;
-        }
-        return true;
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -101,59 +80,93 @@ public class MostrarCategoria extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jBAgregar = new javax.swing.JButton();
-        jBModificar = new javax.swing.JButton();
-        jBEliminar = new javax.swing.JButton();
-        jBAtras = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTCategoria = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jtfBuscarNombre = new javax.swing.JTextField();
         jBBuscar = new javax.swing.JButton();
+        jBAgregar = new javax.swing.JButton();
+        jBModificar = new javax.swing.JButton();
+        jBEliminar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTCategoria = new javax.swing.JTable();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLAtras = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMIRealizarPrestamo = new javax.swing.JMenuItem();
+        jMILibrosPrestados = new javax.swing.JMenuItem();
+        jMISalir = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jmiAgregarLibro = new javax.swing.JMenuItem();
+        jmiAdministrarLibro = new javax.swing.JMenuItem();
+        jmiAgregarCategorias = new javax.swing.JMenuItem();
+        jmiAdministrarCategorias = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jmiAgregarLector = new javax.swing.JMenuItem();
+        jmiAdministrarLectores = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
+        jMIAgregarAutor = new javax.swing.JMenuItem();
+        jMIAdministrarAutor = new javax.swing.JMenuItem();
+        jMIAgregarEditorial = new javax.swing.JMenuItem();
+        jMIAdministrarEditorial = new javax.swing.JMenuItem();
+        jMiReportes = new javax.swing.JMenu();
+        jMenu7 = new javax.swing.JMenu();
+        jMIAcercaDe = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Categorias");
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("Administrar Categorias");
+        setIconImage(getIconImage());
+        setResizable(false);
 
         jLabel1.setBackground(new java.awt.Color(204, 255, 204));
-        jLabel1.setFont(new java.awt.Font("Maiandra GD", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(102, 0, 0));
-        jLabel1.setText("Categoría");
+        jLabel1.setFont(new java.awt.Font("Consolas", 3, 30)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 102, 204));
+        jLabel1.setText("Administrar Categorías");
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/categoria.png"))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Administrar categorías", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Consolas", 3, 12), new java.awt.Color(0, 102, 204))); // NOI18N
+        jPanel1.setForeground(new java.awt.Color(255, 255, 204));
 
-        jBAgregar.setText("Agregar");
+        jLabel2.setText("Buscar por nombre:");
+
+        jtfBuscarNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtfBuscarNombreKeyPressed(evt);
+            }
+        });
+
+        jBBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/boton-recargar.png"))); // NOI18N
+        jBBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBBuscarActionPerformed(evt);
+            }
+        });
+
+        jBAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/boton-agregar.png"))); // NOI18N
         jBAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBAgregarActionPerformed(evt);
             }
         });
 
-        jBModificar.setText("Modificar");
+        jBModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/boton-editar.png"))); // NOI18N
         jBModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBModificarActionPerformed(evt);
             }
         });
 
-        jBEliminar.setText("Eliminar");
+        jBEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/boton-eliminar.png"))); // NOI18N
         jBEliminar.setToolTipText("");
         jBEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBEliminarActionPerformed(evt);
             }
         });
-
-        jBAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
-        jBAtras.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBAtrasActionPerformed(evt);
-            }
-        });
-
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Administrar categorías"));
-        jPanel1.setForeground(new java.awt.Color(255, 255, 204));
 
         jTCategoria.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -170,13 +183,27 @@ public class MostrarCategoria extends javax.swing.JFrame {
         jTCategoria.setEditingRow(0);
         jScrollPane1.setViewportView(jTCategoria);
 
-        jLabel2.setText("Buscar por nombre:");
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        jtfBuscarNombre.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jtfBuscarNombreKeyPressed(evt);
-            }
-        });
+        jLabel3.setFont(new java.awt.Font("Consolas", 3, 16)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 102, 204));
+        jLabel3.setText("Opciones de categoría");
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 2, 11)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 102, 204));
+        jLabel5.setText("Actualizar tabla");
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 2, 11)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 102, 204));
+        jLabel4.setText("Agregar nuevo autor");
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 2, 11)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 102, 204));
+        jLabel6.setText("Modificar categoría existente");
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 2, 11)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 102, 204));
+        jLabel7.setText("Eliminar autor");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -184,93 +211,285 @@ public class MostrarCategoria extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 718, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jtfBuscarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(44, Short.MAX_VALUE))
+                        .addComponent(jtfBuscarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1))
+                .addGap(42, 42, 42)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addComponent(jBBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel5))
+                                .addGap(85, 85, 85))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(jLabel4))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(35, 35, 35)
+                                .addComponent(jBAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(34, 34, 34)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jBModificar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jBEliminar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel6))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jtfBuscarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jSeparator1)
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jtfBuscarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel3)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBBuscar)
+                        .addGap(31, 31, 31)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBAgregar)
+                        .addGap(29, 29, 29)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBModificar)
+                        .addGap(34, 34, 34)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBEliminar)
+                        .addGap(0, 64, Short.MAX_VALUE))))
         );
 
-        jBBuscar.setText("Buscar");
-        jBBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBBuscarActionPerformed(evt);
+        jLAtras.setForeground(new java.awt.Color(0, 0, 255));
+        jLAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
+        jLAtras.setText("Inicio");
+        jLAtras.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLAtrasMouseClicked(evt);
             }
         });
+
+        jMenu1.setText("Archivo");
+
+        jMIRealizarPrestamo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
+        jMIRealizarPrestamo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/PrestarLibro-icono.png"))); // NOI18N
+        jMIRealizarPrestamo.setText("Prestar libro");
+        jMIRealizarPrestamo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIRealizarPrestamoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMIRealizarPrestamo);
+
+        jMILibrosPrestados.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
+        jMILibrosPrestados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/LibrosPrestados-icono.png"))); // NOI18N
+        jMILibrosPrestados.setText("Libros prestados");
+        jMILibrosPrestados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMILibrosPrestadosActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMILibrosPrestados);
+
+        jMISalir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
+        jMISalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Salir.png"))); // NOI18N
+        jMISalir.setText("Salir");
+        jMISalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMISalirActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMISalir);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Libros y categorías");
+
+        jmiAgregarLibro.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
+        jmiAgregarLibro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/AgregarDocumento-icono.png"))); // NOI18N
+        jmiAgregarLibro.setText("Agregar libro");
+        jmiAgregarLibro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiAgregarLibroActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jmiAgregarLibro);
+
+        jmiAdministrarLibro.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.CTRL_MASK));
+        jmiAdministrarLibro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Libro-icono.png"))); // NOI18N
+        jmiAdministrarLibro.setText("Administrar libros");
+        jmiAdministrarLibro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiAdministrarLibroActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jmiAdministrarLibro);
+
+        jmiAgregarCategorias.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
+        jmiAgregarCategorias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/AgregarSimple-icono.png"))); // NOI18N
+        jmiAgregarCategorias.setText("Agregar categorias");
+        jmiAgregarCategorias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiAgregarCategoriasActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jmiAgregarCategorias);
+
+        jmiAdministrarCategorias.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
+        jmiAdministrarCategorias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/LibrosPrestados-icono.png"))); // NOI18N
+        jmiAdministrarCategorias.setText("Administrar categorias");
+        jMenu2.add(jmiAdministrarCategorias);
+
+        jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("Lectores");
+
+        jmiAgregarLector.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
+        jmiAgregarLector.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/AgregarPersona-icono.png"))); // NOI18N
+        jmiAgregarLector.setText("Agregar lector");
+        jmiAgregarLector.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiAgregarLectorActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jmiAgregarLector);
+
+        jmiAdministrarLectores.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_MASK));
+        jmiAdministrarLectores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Lector-icono.png"))); // NOI18N
+        jmiAdministrarLectores.setText("Administrar lectores");
+        jmiAdministrarLectores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiAdministrarLectoresActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jmiAdministrarLectores);
+
+        jMenuBar1.add(jMenu3);
+
+        jMenu5.setText("Autores y editoriales");
+
+        jMIAgregarAutor.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
+        jMIAgregarAutor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/AgregarPersona-icono.png"))); // NOI18N
+        jMIAgregarAutor.setText("Agregar Autor");
+        jMIAgregarAutor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIAgregarAutorActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMIAgregarAutor);
+
+        jMIAdministrarAutor.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_MASK));
+        jMIAdministrarAutor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/persona-icono.png"))); // NOI18N
+        jMIAdministrarAutor.setText("Administrar Autores");
+        jMIAdministrarAutor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIAdministrarAutorActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMIAdministrarAutor);
+
+        jMIAgregarEditorial.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
+        jMIAgregarEditorial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/AgregarSimple-icono.png"))); // NOI18N
+        jMIAgregarEditorial.setText("Agregar Editorial");
+        jMIAgregarEditorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIAgregarEditorialActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMIAgregarEditorial);
+
+        jMIAdministrarEditorial.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.CTRL_MASK));
+        jMIAdministrarEditorial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Editorial-icono.png"))); // NOI18N
+        jMIAdministrarEditorial.setText("Administrar Editorial");
+        jMIAdministrarEditorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIAdministrarEditorialActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMIAdministrarEditorial);
+
+        jMenuBar1.add(jMenu5);
+
+        jMiReportes.setText("Reportes");
+        jMenuBar1.add(jMiReportes);
+
+        jMenu7.setText("Ayuda");
+
+        jMIAcercaDe.setText("Acerca de");
+        jMIAcercaDe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIAcercaDeActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jMIAcercaDe);
+
+        jMenuBar1.add(jMenu7);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jBAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(271, 271, 271)
-                .addComponent(jLabel1)
-                .addContainerGap(581, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jBBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jBModificar))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jBAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(320, 320, 320)
+                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3)
-                        .addGap(46, 46, 46))))
+                        .addGap(10, 10, 10)
+                        .addComponent(jLAtras)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(96, 96, 96)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jBAgregar)
-                            .addComponent(jBBuscar))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jBModificar)
-                            .addComponent(jBEliminar))
-                        .addGap(124, 124, 124)
-                        .addComponent(jLabel3)
-                        .addGap(0, 134, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel1))
-                            .addComponent(jBAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addGap(20, 20, 20)
+                .addComponent(jLabel1)
+                .addGap(9, 9, 9)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addComponent(jLAtras))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
-        // TODO add your handling code here:
         try {
             AgregarCategoria ae = new AgregarCategoria();
             ae.setVisible(true);
@@ -281,46 +500,118 @@ public class MostrarCategoria extends javax.swing.JFrame {
     }//GEN-LAST:event_jBAgregarActionPerformed
 
     private void jBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarActionPerformed
-        // TODO add your handling code here:
         try {
-            ModificarCategoria me = new ModificarCategoria(Integer.parseInt(selected()));
+            ModificarCategoria me = new ModificarCategoria(Integer.parseInt(tabla.selected(jTCategoria)));
             me.setVisible(true);
             this.dispose();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }//GEN-LAST:event_jBModificarActionPerformed
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
-        // TODO add your handling code here:
         if (JOptionPane.showConfirmDialog(rootPane, "Se eliminará la categoria seleccionada, ¿desea continuar?",
-        "Eliminar Registro", JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
-        try {
-            ae.eliminarCategoria(Integer.parseInt(selected()));
-            jTCategoria.setModel(mostrarCategoria());
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Debe seleccionar un dato \n indice seleccionado: " + e.getMessage());
+                "Eliminar Registro", JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            try {
+                ae.eliminarCategoria(Integer.parseInt(tabla.selected(jTCategoria)));
+                jTCategoria.setModel(mostrarCategoria());
+                JOptionPane.showMessageDialog(null, "Categoría eliminada exitosamente!", "En horabuena!", JOptionPane.INFORMATION_MESSAGE);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Debe seleccionar un dato." );
+            }
         }
     }//GEN-LAST:event_jBEliminarActionPerformed
 
-    private void jBAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAtrasActionPerformed
-        // TODO add your handling code here:
-        Principal ma = new Principal();
-        ma.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jBAtrasActionPerformed
-
     private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
-        // TODO add your handling code here:
-        this.jTCategoria.setModel(buscarCategoria(jtfBuscarNombre.getText()));
+        jTCategoria.setModel(mostrarCategoria());
         tabla.resizeColumnWidth(jTCategoria);
     }//GEN-LAST:event_jBBuscarActionPerformed
 
     private void jtfBuscarNombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfBuscarNombreKeyPressed
-        // TODO add your handling code here:
         this.jTCategoria.setModel(buscarCategoria(jtfBuscarNombre.getText()));
         tabla.resizeColumnWidth(jTCategoria);
+        jtfBuscarNombre.setText("");
     }//GEN-LAST:event_jtfBuscarNombreKeyPressed
+
+    private void jMIRealizarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIRealizarPrestamoActionPerformed
+        RealizarPrestamo re = new RealizarPrestamo();
+        re.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMIRealizarPrestamoActionPerformed
+
+    private void jMILibrosPrestadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMILibrosPrestadosActionPerformed
+        Prestamos pre = new Prestamos();
+        pre.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMILibrosPrestadosActionPerformed
+
+    private void jMISalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMISalirActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jMISalirActionPerformed
+
+    private void jmiAgregarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAgregarLibroActionPerformed
+        AgregarLibro al = new AgregarLibro();
+        al.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jmiAgregarLibroActionPerformed
+
+    private void jmiAdministrarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAdministrarLibroActionPerformed
+        MostrarLibros ml = new MostrarLibros();
+        ml.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jmiAdministrarLibroActionPerformed
+
+    private void jmiAgregarCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAgregarCategoriasActionPerformed
+        AgregarCategoria ac = new AgregarCategoria();
+        ac.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jmiAgregarCategoriasActionPerformed
+
+    private void jmiAgregarLectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAgregarLectorActionPerformed
+        AgregarLector al = new AgregarLector();
+        al.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jmiAgregarLectorActionPerformed
+
+    private void jmiAdministrarLectoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAdministrarLectoresActionPerformed
+        MostrarLectores ml = new MostrarLectores();
+        ml.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jmiAdministrarLectoresActionPerformed
+
+    private void jMIAgregarAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIAgregarAutorActionPerformed
+        AgregarAutor au = new AgregarAutor();
+        au.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMIAgregarAutorActionPerformed
+
+    private void jMIAdministrarAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIAdministrarAutorActionPerformed
+        MostrarAutor showWritter = new MostrarAutor();
+        showWritter.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMIAdministrarAutorActionPerformed
+
+    private void jMIAgregarEditorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIAgregarEditorialActionPerformed
+        AgregarEditorial addEd = new AgregarEditorial();
+        addEd.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMIAgregarEditorialActionPerformed
+
+    private void jMIAdministrarEditorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIAdministrarEditorialActionPerformed
+        MostrarEditorial showEd = new MostrarEditorial();
+        showEd.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMIAdministrarEditorialActionPerformed
+
+    private void jMIAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIAcercaDeActionPerformed
+        About about = new About();
+        about.setVisible(true);
+    }//GEN-LAST:event_jMIAcercaDeActionPerformed
+
+    private void jLAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLAtrasMouseClicked
+        Principal principal = new Principal();
+        principal.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLAtrasMouseClicked
 
     /**
      * @param args the command line arguments
@@ -359,16 +650,42 @@ public class MostrarCategoria extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAgregar;
-    private javax.swing.JButton jBAtras;
     private javax.swing.JButton jBBuscar;
     private javax.swing.JButton jBEliminar;
     private javax.swing.JButton jBModificar;
+    private javax.swing.JLabel jLAtras;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JMenuItem jMIAcercaDe;
+    private javax.swing.JMenuItem jMIAdministrarAutor;
+    private javax.swing.JMenuItem jMIAdministrarEditorial;
+    private javax.swing.JMenuItem jMIAgregarAutor;
+    private javax.swing.JMenuItem jMIAgregarEditorial;
+    private javax.swing.JMenuItem jMILibrosPrestados;
+    private javax.swing.JMenuItem jMIRealizarPrestamo;
+    private javax.swing.JMenuItem jMISalir;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu jMiReportes;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTCategoria;
+    private javax.swing.JMenuItem jmiAdministrarCategorias;
+    private javax.swing.JMenuItem jmiAdministrarLectores;
+    private javax.swing.JMenuItem jmiAdministrarLibro;
+    private javax.swing.JMenuItem jmiAgregarCategorias;
+    private javax.swing.JMenuItem jmiAgregarLector;
+    private javax.swing.JMenuItem jmiAgregarLibro;
     private javax.swing.JTextField jtfBuscarNombre;
     // End of variables declaration//GEN-END:variables
 }

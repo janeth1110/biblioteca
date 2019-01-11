@@ -54,6 +54,7 @@ public class About extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Acerca de Biblioteca Centro Escolar ");
         setIconImage(getIconImage());
+        setResizable(false);
 
         jLabel6.setBackground(new java.awt.Color(204, 255, 204));
         jLabel6.setFont(new java.awt.Font("Consolas", 3, 30)); // NOI18N

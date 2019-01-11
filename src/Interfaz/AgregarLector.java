@@ -92,6 +92,7 @@ public class AgregarLector extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Agregar lector - Biblioteca Escolar");
         setIconImage(getIconImage());
+        setResizable(false);
 
         jLabel6.setBackground(new java.awt.Color(204, 255, 204));
         jLabel6.setFont(new java.awt.Font("Consolas", 3, 30)); // NOI18N
@@ -106,7 +107,7 @@ public class AgregarLector extends javax.swing.JFrame {
 
         jLabel4.setText("Sexo:");
 
-        jCBSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "...", "Femenino", "Masculino" }));
+        jCBSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Femenino", "Masculino" }));
 
         jLabel5.setText("Fecha de nacimiento: ");
 
@@ -120,7 +121,7 @@ public class AgregarLector extends javax.swing.JFrame {
 
         jLabel8.setText("Condición:");
 
-        jCBCondicion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "...", "Docente", "Estudiante", "Externo" }));
+        jCBCondicion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estudiante", "Docente", "Externo" }));
 
         jBAgregar.setText("Agregar");
         jBAgregar.addActionListener(new java.awt.event.ActionListener() {

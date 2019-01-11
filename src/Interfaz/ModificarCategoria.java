@@ -2,6 +2,8 @@ package Interfaz;
 
 import Logica.AdministrarCategoria;
 import Logica.Categoria;
+import java.awt.Image;
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 
 public class ModificarCategoria extends javax.swing.JFrame {
@@ -22,6 +24,16 @@ public class ModificarCategoria extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         mostrar(i);
         temp = i;
+    }
+
+    /**
+     * Coloca imagen de formulario
+     */
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().
+                getImage(ClassLoader.getSystemResource("imagenes/logo-icono.png"));
+        return retValue;
     }
 
     public void mostrar(int x) {
@@ -75,6 +87,7 @@ public class ModificarCategoria extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Modificar Categoria - Biblioteca Escolar");
+        setIconImage(getIconImage());
         setResizable(false);
 
         jLabel1.setBackground(new java.awt.Color(204, 255, 204));
@@ -109,34 +122,34 @@ public class ModificarCategoria extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jtfCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(106, 106, 106)
                         .addComponent(jBModificar)
                         .addGap(37, 37, 37)
-                        .addComponent(jBCancelar)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                        .addComponent(jBCancelar))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jtfCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(jLabel3)
-                .addGap(41, 41, 41))
+                .addGap(32, 32, 32))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(44, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jtfCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                .addGap(43, 43, 43)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBModificar)
                     .addComponent(jBCancelar))
                 .addGap(25, 25, 25))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel3)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 32, Short.MAX_VALUE))
         );
 
         jLAtras.setForeground(new java.awt.Color(0, 0, 255));
@@ -324,9 +337,9 @@ public class ModificarCategoria extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(160, 160, 160)
+                        .addGap(129, 129, 129)
                         .addComponent(jLabel1)))
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -335,7 +348,7 @@ public class ModificarCategoria extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(28, 28, 28)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addComponent(jLAtras)
                 .addContainerGap())
         );
@@ -346,17 +359,17 @@ public class ModificarCategoria extends javax.swing.JFrame {
     private void jBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarActionPerformed
         try {
             if (jtfCategoria.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Verifique que no hayan campos vacios", "Todos los campos son obligatorios",JOptionPane.WARNING_MESSAGE);
-        } else {
-            modificar(temp, jtfCategoria.getText());
-            JOptionPane.showMessageDialog(null, "Autor actualizado exitosamente!", "En horabuena!", JOptionPane.INFORMATION_MESSAGE);
-            MostrarCategoria mc = new MostrarCategoria();
-            mc.setVisible(true);
-            this.dispose();
-        }
+                JOptionPane.showMessageDialog(null, "Verifique que no hayan campos vacios", "Todos los campos son obligatorios", JOptionPane.WARNING_MESSAGE);
+            } else {
+                modificar(temp, jtfCategoria.getText());
+                JOptionPane.showMessageDialog(null, "Categoria actualizada exitosamente!", "En horabuena!", JOptionPane.INFORMATION_MESSAGE);
+                MostrarCategoria mc = new MostrarCategoria();
+                mc.setVisible(true);
+                this.dispose();
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un problema, vuelva a intentarlo mas tarde", "Ha ocurrido un error", JOptionPane.ERROR_MESSAGE);
-        } 
+        }
     }//GEN-LAST:event_jBModificarActionPerformed
 
     private void jLAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLAtrasMouseClicked
