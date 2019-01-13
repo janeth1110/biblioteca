@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package AccesoDatos;
 
 import Logica.Prestamo;
@@ -11,10 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Delmy Janeth
- */
 public class Realizacion {
 
     private conexion con = new conexion();
@@ -32,17 +24,14 @@ public class Realizacion {
             stmt1.setString(5, devolucion);
             stmt1.setString(6, tipo);
             rows_updated = stmt1.executeUpdate();
-//            JOptionPane.showMessageDialog(null, rows_updated);
             con.desconectar();
-
             if (rows_updated == 1) {
-                JOptionPane.showMessageDialog(null, "Prestamo generado exitosamente!!");
+                JOptionPane.showMessageDialog(null, "Prestamo generado exitosamente!", "En horabuena!", JOptionPane.INFORMATION_MESSAGE);
                 return true;
             } else {
-                JOptionPane.showMessageDialog(null, "No se pudo realizar el prestamo, favor verifique los datos");
+                JOptionPane.showMessageDialog(null, "No se pudo realizar el prestamo, favor verifique los datos", "Ha ocurrido un error", JOptionPane.ERROR_MESSAGE);
                 return false;
             }
-
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
             return false;
@@ -54,16 +43,14 @@ public class Realizacion {
         try {
             Statement sentencia = null;
             ResultSet resultado = null;
-
             sentencia = con.conectar().createStatement();
             resultado = sentencia.executeQuery("SELECT * FROM biblioteca.estado WHERE idEstado = " + id);
             resultado.last();
-
             estado = resultado.getString("Estado");
             con.desconectar();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
-//            con.desconectar();
+            con.desconectar();
         }
         return estado;
     }
@@ -73,10 +60,8 @@ public class Realizacion {
             int rows_updated = 0;
             PreparedStatement stmt1 = con.conectar().prepareStatement("UPDATE biblioteca.ejemplar SET Estado_idEstado = ? WHERE idejemplar=" + idEjmplar);
             stmt1.setInt(1, 2);
-
             rows_updated = stmt1.executeUpdate();
             if (rows_updated == 1) {
-                JOptionPane.showMessageDialog(null, "Actualizacion realizada!");
                 con.desconectar();
                 return true;
             } else {
@@ -84,23 +69,19 @@ public class Realizacion {
                 return false;
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Errorts: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
             return false;
         }
     }
 
     public boolean devolucionPrestamo(int idPrestamo, Date fechaDevolucion, String devolucion) {
-
         try {
             int rows_updated = 0;
             PreparedStatement stmt1 = con.conectar().prepareStatement("UPDATE biblioteca.prestamo SET fecha_devolucion = ?, devolucion=? WHERE idprestamo = " + idPrestamo);
-//            stmt1.setInt(1, idPrestamo);
             stmt1.setDate(1, fechaDevolucion);
             stmt1.setString(2, devolucion);
             rows_updated = stmt1.executeUpdate();
-//            JOptionPane.showMessageDialog(null, rows_updated);
             con.desconectar();
-
             if (rows_updated == 1) {
                 JOptionPane.showMessageDialog(null, "Base de datos actualizada exitosamente!!");
                 return true;
@@ -108,7 +89,6 @@ public class Realizacion {
                 JOptionPane.showMessageDialog(null, "No se pudo realizar la devolucion, favor verifique los datos");
                 return false;
             }
-
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
             return false;
@@ -183,13 +163,10 @@ public class Realizacion {
         try {
             Statement sentencia = null;
             ResultSet resultado = null;
-
             sentencia = con.conectar().createStatement();
             resultado = sentencia.executeQuery("SELECT * FROM biblioteca.prestamo WHERE idprestamo= " + id);
-
             resultado.beforeFirst();
             resultado.last();
-
             prestamo.setIdEjemplar(resultado.getInt("idejemplar"));
             prestamo.setIdPrestamo(resultado.getInt("idprestamo"));
             prestamo.setIdLector(resultado.getInt("id_lector"));
@@ -203,5 +180,4 @@ public class Realizacion {
         con.desconectar();
         return prestamo;
     }
-
 }

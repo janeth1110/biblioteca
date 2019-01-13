@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package AccesoDatos;
 
 import Logica.Ejemplar;
@@ -14,10 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author delmy
- */
 public class QueryEjemplar {
 
     private conexion con = new conexion();
@@ -34,7 +25,6 @@ public class QueryEjemplar {
             rows_updated = stmt1.executeUpdate();
 
             if (rows_updated == 1) {
-                //JOptionPane.showMessageDialog(null, "Ejemplar agregado exitosamente");
                 con.desconectar();
                 return true;
             } else {
@@ -54,10 +44,8 @@ public class QueryEjemplar {
         try {
             Statement sentencia = null;
             ResultSet resultado = null;
-
             sentencia = con.conectar().createStatement();
             resultado = sentencia.executeQuery("SELECT * FROM biblioteca.ejemplar WHERE idlibro =" + id);
-
             resultado.beforeFirst();
             resultado.last();
 
@@ -109,20 +97,15 @@ public class QueryEjemplar {
         try {
             Statement sentencia = null;
             ResultSet resultado = null;
-
             sentencia = con.conectar().createStatement();
             resultado = sentencia.executeQuery("SELECT idlibro FROM ejemplar WHERE idejemplar=" + id);
-
             resultado.beforeFirst();
             resultado.last();
-
             x = resultado.getInt("idlibro");
-
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
         con.desconectar();
         return x;
     }
-
 }

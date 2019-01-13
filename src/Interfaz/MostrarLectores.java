@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import Logica.*;
+import java.awt.Image;
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 
 public class MostrarLectores extends javax.swing.JFrame {
@@ -19,6 +21,16 @@ public class MostrarLectores extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         jTLectores.setModel(mostrarLector());
         tabla.resizeColumnWidth(jTLectores);
+    }
+    
+    /**
+     * Coloca imagen de formulario
+     */
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().
+                getImage(ClassLoader.getSystemResource("imagenes/logo-icono.png"));
+        return retValue;
     }
 
     public DefaultTableModel mostrarLector() {

@@ -1,14 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Logica;
 
-/**
- *
- * @author delmy
- */
 public class Ejemplar {
 
     private int idLibro;
@@ -18,7 +9,6 @@ public class Ejemplar {
     private int idEstado;
 
     public Ejemplar() {
-
     }
 
     public Ejemplar(int libro, int ejemplar, int numero, String ubicacion, int idEstado) {
@@ -98,5 +88,4 @@ public class Ejemplar {
     public void setIdEjemplar(int idEjemplar) {
         this.idEjemplar = idEjemplar;
     }
-
 }

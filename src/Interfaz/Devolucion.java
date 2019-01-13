@@ -76,6 +76,7 @@ public class Devolucion extends javax.swing.JFrame {
         f = libro.getTitulo();
         return f;
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -436,12 +437,14 @@ public class Devolucion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBConfirmarActionPerformed
-        // TODO add your handling code here:
         try {
             java.sql.Date sqlDate;
             java.util.Date date = jDCFechaDevolucion.getDate();
             sqlDate = new java.sql.Date(date.getTime());
             adpres.devolucionPrestamo(idPrestamo, sqlDate, "cerrado");
+            Prestamos regresar = new Prestamos();
+            regresar.setVisible(true);
+            this.dispose();
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jBConfirmarActionPerformed

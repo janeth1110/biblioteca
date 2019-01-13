@@ -103,7 +103,19 @@ public class AgregarLector extends javax.swing.JFrame {
 
         jLabel2.setText("Nombres: ");
 
+        jtfNombres.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtfNombresKeyPressed(evt);
+            }
+        });
+
         jLabel3.setText("Apellidos: ");
+
+        jTFApellidos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFApellidosKeyTyped(evt);
+            }
+        });
 
         jLabel4.setText("Sexo:");
 
@@ -545,10 +557,22 @@ public class AgregarLector extends javax.swing.JFrame {
     }//GEN-LAST:event_jMIAcercaDeActionPerformed
 
     private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
-        Principal principal = new Principal();
+        MostrarLectores principal = new MostrarLectores();
         principal.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jBCancelarActionPerformed
+
+    private void jtfNombresKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfNombresKeyPressed
+        char caracter = evt.getKeyChar();
+        if ((!Character.isDigit(caracter))
+                || jtfNombres.getText().length() >= 2) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfNombresKeyPressed
+
+    private void jTFApellidosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFApellidosKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFApellidosKeyTyped
 
     /**
      * @param args the command line arguments

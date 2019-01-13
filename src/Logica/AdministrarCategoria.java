@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Logica;
 
 import AccesoDatos.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author delmy
- */
 public class AdministrarCategoria {
 
     public boolean agregarCategoria(Categoria c) {
@@ -76,7 +67,4 @@ public class AdministrarCategoria {
         f = ca.getCategoria();
         return f;
     }
-
-
-
 }

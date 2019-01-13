@@ -1,14 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Logica;
 
-/**
- *
- * @author delmy
- */
 public class Libro {
 
     private int id;
@@ -27,7 +18,7 @@ public class Libro {
     }
 
     public Libro(int id, int editorial, int categoria, int autor, String ISBN, String titulo, int año, String descripcion, int edicion, int idioma) {
-        this.id=id;
+        this.id = id;
         this.idEditorial = editorial;
         this.idCategoria = categoria;
         this.idAutor = autor;
@@ -178,5 +169,4 @@ public class Libro {
     public void setId(int id) {
         this.id = id;
     }
-
 }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package AccesoDatos;
 
 import Logica.Idioma;
@@ -12,10 +7,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author delmy
- */
 public class QueryIdioma {
 
     private conexion con = new conexion();
@@ -54,13 +45,10 @@ public class QueryIdioma {
         try {
             Statement sentencia = null;
             ResultSet resultado = null;
-
             sentencia = con.conectar().createStatement();
             resultado = sentencia.executeQuery("SELECT * FROM biblioteca.idioma WHERE idioma = '" + u + "'");
-
             resultado.beforeFirst();
             resultado.last();
-
             idio = resultado.getInt("idIdioma");
 
         } catch (SQLException e) {
@@ -70,15 +58,13 @@ public class QueryIdioma {
         con.desconectar();
         return idio;
     }
-    
-    public Idioma devolberIdioma(int x){
+
+    public Idioma devolverIdioma(int x) {
         try {
             Statement sentencia = null;
             ResultSet resultado = null;
-
             sentencia = con.conectar().createStatement();
             resultado = sentencia.executeQuery("SELECT * FROM biblioteca.idioma WHERE idIdioma=" + x);
-
             resultado.beforeFirst();
             resultado.last();
 
@@ -88,8 +74,6 @@ public class QueryIdioma {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
-
         return idioma;
     }
-
 }

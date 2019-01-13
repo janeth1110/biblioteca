@@ -1,16 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package AccesoDatos;
 
 import java.sql.*;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Delmy Janeth
- */
 public class conexion {
 
     Connection conexion = null;
@@ -23,7 +15,6 @@ public class conexion {
         }
         try {
             conexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1/biblioteca", "root", "admin");
-            //JOptionPane.showMessageDialog(null, "Conectado Satisfactoriamente");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }

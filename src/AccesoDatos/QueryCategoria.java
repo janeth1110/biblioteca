@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package AccesoDatos;
 
 import Logica.Categoria;
@@ -15,10 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author delmy
- */
 public class QueryCategoria {
 
     private conexion con = new conexion();
@@ -32,11 +23,9 @@ public class QueryCategoria {
             rows_updated = stmt1.executeUpdate();
 
             if (rows_updated == 1) {
-                //JOptionPane.showMessageDialog(null, "Categoria agregada correctamente");
                 con.desconectar();
                 return true;
             } else {
-                //JOptionPane.showMessageDialog(null, "No se pudo agregar la categoria");
                 con.desconectar();
                 return false;
             }
@@ -51,10 +40,8 @@ public class QueryCategoria {
         try {
             Statement sentencia = null;
             ResultSet resultado = null;
-
             sentencia = con.conectar().createStatement();
             resultado = sentencia.executeQuery("SELECT * FROM biblioteca.categoria WHERE idcategoria = " + id);
-
             resultado.beforeFirst();
             resultado.last();
 
@@ -63,7 +50,6 @@ public class QueryCategoria {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
-
         return categoria;
     }
 
@@ -105,14 +91,12 @@ public class QueryCategoria {
             rows_updated = stmt1.executeUpdate();
 
             if (rows_updated == 1) {
-//                JOptionPane.showMessageDialog(null, "Actualizacion realizada");
                 con.desconectar();
                 return true;
             } else {
                 con.desconectar();
                 return false;
             }
-
         } catch (HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
             return false;
@@ -177,7 +161,6 @@ public class QueryCategoria {
             if (resultado.next()) {
                 do {
                     Categoria listaTemporal = new Categoria(resultado.getInt(1), resultado.getString(2));
-//                    JOptionPane.showMessageDialog(null, resultado.getString(2));
                     info.add(listaTemporal);
                 } while (resultado.next());
                 return info;
@@ -210,5 +193,4 @@ public class QueryCategoria {
         }
         return catego;
     }
-
 }

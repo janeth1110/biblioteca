@@ -1,6 +1,8 @@
 package Interfaz;
 
 import Logica.*;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -35,6 +37,16 @@ public class RealizarPrestamo extends javax.swing.JFrame {
         tabla.resizeColumnWidth(jTLibros);
         fechaPrestamo();
     }
+    
+    /**
+     * Coloca imagen de formulario
+     */
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().
+                getImage(ClassLoader.getSystemResource("imagenes/logo-icono.png"));
+        return retValue;
+    }
 
     public DefaultTableModel mostrarLector() {
         List<Lector> lectores2 = new ArrayList<Lector>();
@@ -64,10 +76,8 @@ public class RealizarPrestamo extends javax.swing.JFrame {
         TableModel tablaModelo = (TableModel) jTLectores.getModel();
         id = String.valueOf(tablaModelo.getValueAt(jTLectores.getSelectedRow(), 0));
         if (id.isEmpty()) {
-//           JOptionPane.showMessageDialog(null, id);
-            return "Debe seleccionar un dato";
+            return null;
         } else {
-//            JOptionPane.showMessageDialog(null, "Debe seleccionar una Editorial");
             prestamo.setIdLector(Integer.parseInt(id));
             return id;
         }
@@ -82,10 +92,8 @@ public class RealizarPrestamo extends javax.swing.JFrame {
         apellido = String.valueOf(tablaModelo.getValueAt(jTLectores.getSelectedRow(), 2));
         res = nombre + " " + apellido;
         if (res.isEmpty()) {
-//           JOptionPane.showMessageDialog(null, id);
             return "Debe seleccionar un dato";
         } else {
-//            JOptionPane.showMessageDialog(null, "Debe seleccionar una Editorial");
             return res;
         }
     }
@@ -238,10 +246,8 @@ public class RealizarPrestamo extends javax.swing.JFrame {
         TableModel tablaModelo = (TableModel) jTEjemplares.getModel();
         id = String.valueOf(tablaModelo.getValueAt(jTEjemplares.getSelectedRow(), 0));
         if (id.isEmpty()) {
-//           JOptionPane.showMessageDialog(null, id);
             return "Debe seleccionar un dato";
         } else {
-//            JOptionPane.showMessageDialog(null, "Debe seleccionar una Editorial");
             prestamo.setIdEjemplar(Integer.parseInt(id));
             return id;
         }
@@ -255,10 +261,8 @@ public class RealizarPrestamo extends javax.swing.JFrame {
         id = String.valueOf(tablaModelo.getValueAt(jTEjemplares.getSelectedRow(), 1));
 
         if (id.isEmpty()) {
-//           JOptionPane.showMessageDialog(null, id);
             return "Debe seleccionar un dato";
         } else {
-//            JOptionPane.showMessageDialog(null, "Debe seleccionar una Editorial");
             return id;
         }
     }
@@ -270,10 +274,8 @@ public class RealizarPrestamo extends javax.swing.JFrame {
         id = String.valueOf(tablaModelo.getValueAt(jTEjemplares.getSelectedRow(), 2));
 
         if (id.isEmpty()) {
-//           JOptionPane.showMessageDialog(null, id);
             return "Debe seleccionar un dato";
         } else {
-//            JOptionPane.showMessageDialog(null, "Debe seleccionar una Editorial");
             return id;
         }
     }
@@ -338,11 +340,10 @@ public class RealizarPrestamo extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTEjemplares = new javax.swing.JTable();
         jLAtras = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMIRealizarPrestamo = new javax.swing.JMenuItem();
-        jMIDevolverLibro = new javax.swing.JMenuItem();
+        jMILibrosPrestados = new javax.swing.JMenuItem();
         jMISalir = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jmiAgregarLibro = new javax.swing.JMenuItem();
@@ -361,8 +362,10 @@ public class RealizarPrestamo extends javax.swing.JFrame {
         jMenu7 = new javax.swing.JMenu();
         jMIAcercaDe = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Préstamo de libro");
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("Realizar prestamos - Biblioteca Escolar");
+        setIconImage(getIconImage());
+        setResizable(false);
 
         jLabel6.setBackground(new java.awt.Color(204, 255, 204));
         jLabel6.setFont(new java.awt.Font("Consolas", 3, 30)); // NOI18N
@@ -370,7 +373,7 @@ public class RealizarPrestamo extends javax.swing.JFrame {
         jLabel6.setText("Préstamo de libro");
         jLabel6.setToolTipText("");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos del prestamo"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos del prestamo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 2, 12), new java.awt.Color(0, 102, 204))); // NOI18N
 
         jLabel1.setText("Lector: ");
 
@@ -493,6 +496,8 @@ public class RealizarPrestamo extends javax.swing.JFrame {
                     .addComponent(jBGuardar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jTabbedPane1.setForeground(new java.awt.Color(0, 102, 204));
 
         jPanel3.setForeground(new java.awt.Color(0, 153, 255));
 
@@ -675,8 +680,6 @@ public class RealizarPrestamo extends javax.swing.JFrame {
             }
         });
 
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/PrestarLibro.png"))); // NOI18N
-
         jMenu1.setText("Archivo");
 
         jMIRealizarPrestamo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
@@ -684,15 +687,15 @@ public class RealizarPrestamo extends javax.swing.JFrame {
         jMIRealizarPrestamo.setText("Prestar libro");
         jMenu1.add(jMIRealizarPrestamo);
 
-        jMIDevolverLibro.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_MASK));
-        jMIDevolverLibro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/DevolverLibro-icono.png"))); // NOI18N
-        jMIDevolverLibro.setText("Devolver libro");
-        jMIDevolverLibro.addActionListener(new java.awt.event.ActionListener() {
+        jMILibrosPrestados.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
+        jMILibrosPrestados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/LibrosPrestados-icono.png"))); // NOI18N
+        jMILibrosPrestados.setText("Libros prestados");
+        jMILibrosPrestados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMIDevolverLibroActionPerformed(evt);
+                jMILibrosPrestadosActionPerformed(evt);
             }
         });
-        jMenu1.add(jMIDevolverLibro);
+        jMenu1.add(jMILibrosPrestados);
 
         jMISalir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
         jMISalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Salir.png"))); // NOI18N
@@ -844,10 +847,8 @@ public class RealizarPrestamo extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLAtras)
-                        .addGap(284, 284, 284)
+                        .addGap(328, 328, 328)
                         .addComponent(jLabel6)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel12)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -858,14 +859,11 @@ public class RealizarPrestamo extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLAtras)))
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17)
+                    .addComponent(jLabel6)
+                    .addComponent(jLAtras))
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTabbedPane1)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -960,10 +958,11 @@ public class RealizarPrestamo extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLAtrasMouseClicked
 
-    private void jMIDevolverLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIDevolverLibroActionPerformed
-        pres.setVisible(true);
+    private void jMILibrosPrestadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMILibrosPrestadosActionPerformed
+        Prestamos pre = new Prestamos();
+        pre.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jMIDevolverLibroActionPerformed
+    }//GEN-LAST:event_jMILibrosPrestadosActionPerformed
 
     private void jMISalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMISalirActionPerformed
         System.exit(0);
@@ -1032,7 +1031,6 @@ public class RealizarPrestamo extends javax.swing.JFrame {
     private void jMIAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIAcercaDeActionPerformed
         About about = new About();
         about.setVisible(true);
-        this.dispose();
     }//GEN-LAST:event_jMIAcercaDeActionPerformed
 
     /**
@@ -1083,7 +1081,6 @@ public class RealizarPrestamo extends javax.swing.JFrame {
     private javax.swing.JLabel jLNombreLibro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1097,7 +1094,7 @@ public class RealizarPrestamo extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMIAdministrarEditorial;
     private javax.swing.JMenuItem jMIAgregarAutor;
     private javax.swing.JMenuItem jMIAgregarEditorial;
-    private javax.swing.JMenuItem jMIDevolverLibro;
+    private javax.swing.JMenuItem jMILibrosPrestados;
     private javax.swing.JMenuItem jMIRealizarPrestamo;
     private javax.swing.JMenuItem jMISalir;
     private javax.swing.JMenu jMenu1;

@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Logica;
 
 import AccesoDatos.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author delmy
- */
 public class AdministrarAutor {
 
     public boolean agregarAutor(Autor a) {
@@ -50,24 +41,23 @@ public class AdministrarAutor {
         listaAutor = rel.buscarAutor(n);
         return listaAutor;
     }
-    
+
     //para llenar comboBox
-    
-    public List<Autor> obteAutor(){
+    public List<Autor> obteAutor() {
         List<Autor> listaAutor = new ArrayList<Autor>();
         QueryAutor rel = new QueryAutor();
         listaAutor = rel.obtenerAutor();
         return listaAutor;
     }
-    
-    public int obtenerIdAutor(String n){
-        int au=0;
+
+    public int obtenerIdAutor(String n) {
+        int au = 0;
         QueryAutor rel = new QueryAutor();
         au = rel.obtenerIdAutor(n);
         return au;
     }
-    
-     /**
+
+    /**
      * Devuelve el nombre del autor a partir de su ID
      */
     public String ObtenerAut(int y) {
@@ -77,5 +67,4 @@ public class AdministrarAutor {
         g = au.getNombre() + " " + au.getApellido();
         return g;
     }
-
 }

@@ -61,5 +61,4 @@ public class AdministrarUsuario {
     public boolean eliminarUsuario(int id) {
         return login.eliminarUsuario(id);
     }
-
 }

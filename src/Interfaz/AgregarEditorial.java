@@ -99,6 +99,12 @@ public class AgregarEditorial extends javax.swing.JFrame {
         jLabel2.setBackground(new java.awt.Color(204, 255, 204));
         jLabel2.setText("Nombre:");
 
+        jtfNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfNombreKeyTyped(evt);
+            }
+        });
+
         jLabel3.setBackground(new java.awt.Color(204, 255, 204));
         jLabel3.setText("Dirección:");
 
@@ -487,10 +493,18 @@ public class AgregarEditorial extends javax.swing.JFrame {
     }//GEN-LAST:event_jMIAcercaDeActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Principal principal = new Principal();
+        MostrarEditorial principal = new MostrarEditorial();
         principal.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jtfNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfNombreKeyTyped
+        char caracter = evt.getKeyChar();
+        if ((!Character.isDigit(caracter))
+                || jtfNombre.getText().length() >= 2) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfNombreKeyTyped
 
     /**
      * @param args the command line arguments

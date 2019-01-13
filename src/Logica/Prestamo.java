@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Logica;
 
 import java.sql.Date;
 
-/**
- *
- * @author delmy
- */
 public class Prestamo {
-    
+
     private int idPrestamo;
     private int idEjemplar;
     private int idLector;
@@ -20,19 +11,18 @@ public class Prestamo {
     private Date fechaDevolucion;
     private String devolucion;
     private String tipoPrestamo;
-    
-    public Prestamo(){
-        
+
+    public Prestamo() {
     }
-    
-    public Prestamo(int idPrestamo, int idEjemplar, int idLector, Date fechaPrestamo, Date fechaDevolucion, String devolucion, String tipoPrestamo){       
-        this.idPrestamo=idPrestamo;
+
+    public Prestamo(int idPrestamo, int idEjemplar, int idLector, Date fechaPrestamo, Date fechaDevolucion, String devolucion, String tipoPrestamo) {
+        this.idPrestamo = idPrestamo;
         this.idEjemplar = idEjemplar;
         this.idLector = idLector;
         this.fechaPrestamo = fechaPrestamo;
         this.fechaDevolucion = fechaDevolucion;
         this.devolucion = devolucion;
-        this.tipoPrestamo = tipoPrestamo;      
+        this.tipoPrestamo = tipoPrestamo;
     }
 
     /**
@@ -132,6 +122,4 @@ public class Prestamo {
     public void setIdPrestamo(int idPrestamo) {
         this.idPrestamo = idPrestamo;
     }
-    
-    
 }

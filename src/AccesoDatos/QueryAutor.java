@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package AccesoDatos;
 
 import Logica.*;
@@ -11,10 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author delmy
- */
 public class QueryAutor {
 
     private conexion con = new conexion();
@@ -29,16 +20,14 @@ public class QueryAutor {
             rows_updated = stmt1.executeUpdate();
 
             if (rows_updated == 1) {
-                //JOptionPane.showMessageDialog(null, "Autor agregado correctamente!");
                 con.desconectar();
                 return true;
             } else {
-                //JOptionPane.showMessageDialog(null, "No se pudo agregar Autor");
                 con.desconectar();
                 return false;
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Error detectado:\n"+ ex.getMessage(),"Ha ocurrido un error",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error detectado:\n" + ex.getMessage(), "Ha ocurrido un error", JOptionPane.ERROR_MESSAGE);
             con.desconectar();
             return false;
         }
@@ -57,7 +46,7 @@ public class QueryAutor {
 
             autor.setNombre(resultado.getString("nombre"));
             autor.setApellido(resultado.getString("apellido"));
-            
+
             con.desconectar();
 
         } catch (SQLException e) {
@@ -104,7 +93,6 @@ public class QueryAutor {
 
             rows_updated = stmt1.executeUpdate();
             if (rows_updated == 1) {
-                //JOptionPane.showMessageDialog(null, "Actualizacion realizada!");
                 con.desconectar();
                 return true;
             } else {
@@ -112,7 +100,6 @@ public class QueryAutor {
                 return false;
             }
         } catch (SQLException e) {
-//            JOptionPane.showMessageDialog(null, "Error " + e.getMessage());
             return false;
         }
     }
@@ -148,12 +135,10 @@ public class QueryAutor {
                 resultado.beforeFirst();
                 while (resultado.next()) {
                     int id = (Integer) resultado.getObject("idautor");
-//                    JOptionPane.showMessageDialog(null, id);
                     String nombre = resultado.getObject("nombre").toString();
                     String direccion = resultado.getObject("apellido").toString();
                     Autor au = new Autor(id, nombre, direccion);
                     listaAutor.add(au);
-//                    JOptionPane.showMessageDialog(null, au.getNombre().toString());
                 }
             }
         } catch (SQLException e) {
@@ -188,21 +173,21 @@ public class QueryAutor {
             return null;
         }
     }
-    
+
     public int obtenerIdAutor(String h) {
-        int auto=0;
+        int auto = 0;
         try {
             Statement sentencia = null;
             ResultSet resultado = null;
-            
+
             sentencia = con.conectar().createStatement();
-            resultado = sentencia.executeQuery("SELECT * FROM biblioteca.autor WHERE nombre ='"+h+"'");
-            
+            resultado = sentencia.executeQuery("SELECT * FROM biblioteca.autor WHERE nombre ='" + h + "'");
+
             resultado.beforeFirst();
             resultado.last();
-            
+
             auto = resultado.getInt("idautor");
-            
+
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package AccesoDatos;
 
 import Logica.Editorial;
@@ -11,10 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author delmy
- */
 public class QueryEditorial {
 
     private conexion con = new conexion();
@@ -30,11 +21,9 @@ public class QueryEditorial {
             rows_updated = stmt1.executeUpdate();
 
             if (rows_updated == 1) {
-//                JOptionPane.showMessageDialog(null, "Editorial agregada correctamente!");
                 con.desconectar();
                 return true;
             } else {
-//                JOptionPane.showMessageDialog(null, "No se pudo agregar editorial");
                 con.desconectar();
                 return false;
             }
@@ -48,10 +37,8 @@ public class QueryEditorial {
         try {
             Statement sentencia = null;
             ResultSet resultado = null;
-
             sentencia = con.conectar().createStatement();
             resultado = sentencia.executeQuery("SELECT * FROM biblioteca.editorial WHERE idEditorial=" + id);
-
             resultado.beforeFirst();
             resultado.last();
 
@@ -62,7 +49,6 @@ public class QueryEditorial {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
-
         return editorial;
     }
 
@@ -105,7 +91,6 @@ public class QueryEditorial {
 
             rows_updated = stmt1.executeUpdate();
             if (rows_updated == 1) {
-                JOptionPane.showMessageDialog(null, "Actualizacion realizada!");
                 con.desconectar();
                 return true;
             } else {
@@ -168,7 +153,6 @@ public class QueryEditorial {
         try {
             Statement sentencia = null;
             ResultSet resultado = null;
-
             sentencia = con.conectar().createStatement();
             resultado = sentencia.executeQuery("SELECT * FROM biblioteca.editorial ORDER BY nombre asc");
 
@@ -197,10 +181,8 @@ public class QueryEditorial {
         try {
             Statement sentencia = null;
             ResultSet resultado = null;
-
             sentencia = con.conectar().createStatement();
             resultado = sentencia.executeQuery("SELECT * FROM biblioteca.editorial WHERE nombre ='" + u + "'");
-
             resultado.beforeFirst();
             resultado.last();
 
@@ -213,5 +195,4 @@ public class QueryEditorial {
         con.desconectar();
         return idio;
     }
-
 }

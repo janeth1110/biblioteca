@@ -12,7 +12,6 @@ public class Usuario {
      * Constructores de la clase
      */
     public Usuario() {
-
     }
 
     public Usuario(int id, String password, String name, String lastName, String rol) {

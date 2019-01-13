@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Logica;
 
 import AccesoDatos.*;
@@ -13,10 +8,6 @@ import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author delmy
- */
 public class AdministrarLector {
 
     public boolean agregarLector(Lector l) {
@@ -69,10 +60,6 @@ public class AdministrarLector {
 
         switch (selected) {
             case 0:
-                JOptionPane.showMessageDialog(null, "Debe seleccionar un genero");
-                sexo = "";
-                break;
-            case 1:
                 sexo = "F";
                 break;
             default:
@@ -88,13 +75,9 @@ public class AdministrarLector {
 
         switch (selected) {
             case 0:
-                JOptionPane.showMessageDialog(null, "Debe seleccionar un genero");
-                condicion = "";
-                break;
-            case 1:
                 condicion = "Docente";
                 break;
-            case 2:
+            case 1:
                 condicion = "Externo";
                 break;
             default:
@@ -103,8 +86,8 @@ public class AdministrarLector {
         }
         return condicion;
     }
-    
-        public Date fecha_nacimiento(JDateChooser fech) {
+
+    public Date fecha_nacimiento(JDateChooser fech) {
         java.sql.Date sqlDate;
         try {
             java.util.Date date = fech.getDate();

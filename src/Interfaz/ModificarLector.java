@@ -451,7 +451,7 @@ public class ModificarLector extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Verifique que no hayan campos vacios", "Todos los campos son obligatorios", JOptionPane.WARNING_MESSAGE);
             } else {
                 modificar(temp, jtfNombres.getText(), jTFApellidos.getText(), jCBCondicion.getSelectedItem().toString(), jTFTelefono.getText());
-                JOptionPane.showMessageDialog(null, "Editorial actualizada exitosamente!", "En horabuena!", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Lector actualizado exitosamente!", "En horabuena!", JOptionPane.INFORMATION_MESSAGE);
                 MostrarLectores ml = new MostrarLectores();
                 ml.setVisible(true);
                 this.dispose();

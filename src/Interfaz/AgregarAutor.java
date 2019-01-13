@@ -91,7 +91,19 @@ public class AgregarAutor extends javax.swing.JFrame {
 
         jLabel3.setText("Nombre:");
 
+        jTFNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFNombreKeyTyped(evt);
+            }
+        });
+
         jLabel4.setText("Apellido: ");
+
+        jTFApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFApellidoKeyTyped(evt);
+            }
+        });
 
         jBAgregar.setText("Agregar");
         jBAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -458,10 +470,26 @@ public class AgregarAutor extends javax.swing.JFrame {
     }//GEN-LAST:event_jMIAcercaDeActionPerformed
 
     private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
-        Principal principal = new Principal();
+        MostrarLibros principal = new MostrarLibros();
         principal.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jBCancelarActionPerformed
+
+    private void jTFNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFNombreKeyTyped
+        char caracter = evt.getKeyChar();
+        if ((!Character.isDigit(caracter))
+                || jTFNombre.getText().length() >= 2) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTFNombreKeyTyped
+
+    private void jTFApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFApellidoKeyTyped
+                char caracter = evt.getKeyChar();
+        if ((!Character.isDigit(caracter))
+                || jTFApellido.getText().length() >= 2) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTFApellidoKeyTyped
 
     /**
      * @param args the command line arguments

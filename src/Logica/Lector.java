@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Logica;
 
 import java.sql.Date;
 
-/**
- *
- * @author delmy
- */
 public class Lector {
 
     private int id;
@@ -20,17 +11,12 @@ public class Lector {
     private Date fecha_nac;
     private String condicion;
     private String telefono;
-//    boolean vacio;
 
     public Lector() {
-
     }
 
-//    public void vaciar(boolean vacio) {
-//        this.vacio = vacio;
-//    }
     public Lector(int id, String nom, String ape, String se, Date fecha, String cond, String tel) {
-        this.id=id;
+        this.id = id;
         this.nombre = nom;
         this.apellido = ape;
         this.sexo = se;
@@ -136,5 +122,4 @@ public class Lector {
     public void setId(int id) {
         this.id = id;
     }
-
 }

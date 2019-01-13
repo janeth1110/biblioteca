@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package AccesoDatos;
 
 import Logica.Lector;
@@ -16,10 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author delmy
- */
 public class QueryLector {
 
     private conexion con = new conexion();
@@ -38,16 +29,14 @@ public class QueryLector {
             rows_updated = stmt1.executeUpdate();
 
             if (rows_updated == 1) {
-//                JOptionPane.showMessageDialog(null, "Lector agregado exitosamente");
                 con.desconectar();
                 return true;
             } else {
-//                JOptionPane.showMessageDialog(null, "No se pudo agregar lector, por favor verifique los datos");
                 con.desconectar();
                 return false;
             }
         } catch (HeadlessException | SQLException e) {
-            JOptionPane.showMessageDialog(null,"Error detectado:\n"+ e.getMessage(),"Ha ocurrido un error",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error detectado:\n" + e.getMessage(), "Ha ocurrido un error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
     }
@@ -56,13 +45,10 @@ public class QueryLector {
         try {
             Statement sentencia = null;
             ResultSet resultado = null;
-
             sentencia = con.conectar().createStatement();
             resultado = sentencia.executeQuery("SELECT * FROM biblioteca.lector WHERE idlector= " + nombre);
-
             resultado.beforeFirst();
             resultado.last();
-
             lector.setNombre(resultado.getString("nombre"));
             lector.setApellido(resultado.getString("apellido"));
             lector.setSexo(resultado.getString("sexo"));
@@ -73,7 +59,6 @@ public class QueryLector {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
-
         return lector;
     }
 
@@ -120,7 +105,6 @@ public class QueryLector {
 
             rows_updated = stmt1.executeUpdate();
             if (rows_updated == 1) {
-                JOptionPane.showMessageDialog(null, "Actualizacion realizada!");
                 con.desconectar();
                 return true;
             } else {
@@ -170,7 +154,7 @@ public class QueryLector {
                     Date fecha = resultado.getDate("fecha_nacimiento");
                     String condicion = resultado.getObject("condicion").toString();
                     String tel = resultado.getObject("telefono").toString();
-                    Lector le = new Lector(id, nombre, apellido, sexo, fecha, condicion,tel);
+                    Lector le = new Lector(id, nombre, apellido, sexo, fecha, condicion, tel);
                     listaLector.add(le);
                 }
             }
@@ -180,15 +164,13 @@ public class QueryLector {
         con.desconectar();
         return listaLector;
     }
-    
+
     public Lector obtenerIdLector(String nombre) {
         try {
             Statement sentencia = null;
             ResultSet resultado = null;
-
             sentencia = con.conectar().createStatement();
-            resultado = sentencia.executeQuery("SELECT * FROM lector WHERE nombre LIKE '" + nombre +"%'");
-
+            resultado = sentencia.executeQuery("SELECT * FROM lector WHERE nombre LIKE '" + nombre + "%'");
             resultado.beforeFirst();
             resultado.last();
 
@@ -203,8 +185,6 @@ public class QueryLector {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
-//JOptionPane.showMessageDialog(null, lector.getId());
         return lector;
     }
-    
 }

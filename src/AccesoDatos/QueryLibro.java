@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package AccesoDatos;
 
 import Logica.Libro;
@@ -14,10 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author delmy
- */
 public class QueryLibro {
 
     private conexion con = new conexion();
@@ -39,11 +30,9 @@ public class QueryLibro {
             rows_updated = stmt1.executeUpdate();
 
             if (rows_updated == 1) {
-                //JOptionPane.showMessageDialog(null, "Libro agregado exitosamente");
                 con.desconectar();
                 return true;
             } else {
-                //JOptionPane.showMessageDialog(null, "No se pudo agregar libro, por favor verifique los datos");
                 con.desconectar();
                 return false;
             }
@@ -57,13 +46,10 @@ public class QueryLibro {
         try {
             Statement sentencia = null;
             ResultSet resultado = null;
-
             sentencia = con.conectar().createStatement();
             resultado = sentencia.executeQuery("SELECT * FROM biblioteca.libro WHERE idlibro= " + id);
-
             resultado.beforeFirst();
             resultado.last();
-
             libro.setIdEditorial(resultado.getInt("ideditorial"));
             libro.setIdCategoria(resultado.getInt("idcategoria"));
             libro.setIdAutor(resultado.getInt("idautor"));
@@ -126,7 +112,6 @@ public class QueryLibro {
 
             rows_updated = stmt1.executeUpdate();
             if (rows_updated == 1) {
-//                JOptionPane.showMessageDialog(null, "Actualizacion realizada!");
                 con.desconectar();
                 return true;
             } else {
@@ -161,7 +146,7 @@ public class QueryLibro {
             Statement sentencia = null;
             ResultSet resultado = null;
             sentencia = con.conectar().createStatement();
-            resultado = sentencia.executeQuery("SELECT * FROM biblioteca.libro WHERE titulo like '" + n + "%'");
+            resultado = sentencia.executeQuery("SELECT * FROM biblioteca.libro WHERE titulo like '%" + n + "%'");
             resultado.last();
             if (resultado.getRow() <= 0) {
                 listaLibro.clear();
@@ -195,11 +180,9 @@ public class QueryLibro {
         try {
             Statement sentencia = null;
             ResultSet resultado = null;
-
             sentencia = con.conectar().createStatement();
             resultado = sentencia.executeQuery("SELECT COUNT(idejemplar) FROM biblioteca.ejemplar WHERE idlibro= " + id);
             resultado.last();
-
             numero = resultado.getInt(1);
             con.desconectar();
         } catch (SQLException e) {

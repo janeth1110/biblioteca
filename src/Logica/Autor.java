@@ -1,17 +1,17 @@
 package Logica;
 
 public class Autor {
+
     private int id;
     private String nombre;
     private String apellido;
-
 
     public Autor() {
 
     }
 
-    public Autor(int id,String nom, String ape) {
-        this.id=id;
+    public Autor(int id, String nom, String ape) {
+        this.id = id;
         this.nombre = nom;
         this.apellido = ape;
     }

@@ -200,7 +200,6 @@ public class LogIn extends javax.swing.JFrame {
     }//GEN-LAST:event_jBCancelarActionPerformed
 
     private void jTFUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFUsuarioKeyTyped
-        // TODO add your handling code here:
         char caracter = evt.getKeyChar();
         if ((!Character.isDigit(caracter))
                 || jTFUsuario.getText().length() >= 2) {

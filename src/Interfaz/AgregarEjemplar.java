@@ -572,7 +572,7 @@ public class AgregarEjemplar extends javax.swing.JFrame {
     }//GEN-LAST:event_jMIAcercaDeActionPerformed
 
     private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
-        Principal principal = new Principal();
+        MostrarLibros principal = new MostrarLibros();
         principal.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jBCancelarActionPerformed
